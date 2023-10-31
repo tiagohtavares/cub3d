@@ -11,12 +11,28 @@
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/error.h"
 #include <math.h>
+#include <stdio.h>
 
 void	move_w(t_data *gameinfo)
 {
 	gameinfo->playerx -= gameinfo->playerdx;
 	gameinfo->playery -= gameinfo->playerdy;
+	gameinfo->player_gridx = gameinfo->playerx / WIDTH;
+	gameinfo->player_gridy = gameinfo->playery / HEIGHT;
+	/* if (gameinfo->playerx % WIDTH == 0)
+	{
+		gameinfo->player_gridx--;
+	}
+	if (gameinfo->playery % HEIGHT == 0)
+	{
+		gameinfo->player_gridy--;
+
+	} */
+	printf("Px: %d\t|\tPy: %d\n", gameinfo->playerx, gameinfo->playery);
+	printf("Gx: %d\t|\tGy: %d\n", gameinfo->player_gridx, gameinfo->player_gridy);
+	ft_check_collisions(gameinfo->map, gameinfo->player_gridx, gameinfo->player_gridy, gameinfo);
 	ft_draw_minimap(gameinfo);
 	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
 	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);
@@ -26,6 +42,20 @@ void	move_s(t_data *gameinfo)
 {
 	gameinfo->playerx += gameinfo->playerdx;
 	gameinfo->playery += gameinfo->playerdy;
+	gameinfo->player_gridx = gameinfo->playerx / WIDTH;
+	gameinfo->player_gridy = gameinfo->playery / HEIGHT;
+	/* if (gameinfo->playerx % WIDTH == 0)
+	{
+		gameinfo->player_gridx++;
+	}
+	if (gameinfo->playery % HEIGHT == 0)
+	{
+		gameinfo->player_gridy++;
+
+	} */
+	printf("Px: %d\t|\tPy: %d\n", gameinfo->playerx, gameinfo->playery);
+	printf("Gx: %d\t|\tGy: %d\n", gameinfo->player_gridx, gameinfo->player_gridy);
+	ft_check_collisions(gameinfo->map, gameinfo->playerx, gameinfo->playery, gameinfo);
 	ft_draw_minimap(gameinfo);
 	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
 	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);
@@ -71,16 +101,19 @@ void	moves(int key, t_data *gameinfo)
 int	keys(int key, t_data *gameinfo)
 {
 	if (key == XK_Escape)
-		exit(0);
+	{
+		terminate_prog(gameinfo, EXIT_SUCCESS);
+	}
 	else
+	{
 		moves(key, gameinfo);
+	}
 	return (0);
 }
 
 //Exit clicking on x
 int	x_button(t_data *gameinfo)
 {
-	(void)gameinfo;
-	exit(0);
+	terminate_prog(gameinfo, EXIT_SUCCESS);
 	return (0);
 }

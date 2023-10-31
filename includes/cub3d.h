@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/10/30 16:54:40 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:27:37 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,17 @@
 #include <math.h>
 #define PI 3.1415926535
 
+//1280x720
+#define W_WIDTH 1280
+#define W_HEIGHT 720
+
+#define WIDTH 32
+#define HEIGHT 32
+
 typedef struct s_data
 {
 	char	**map;
+	char	*map_file;
 	void	*mlx;
 	void	*mlx_window;
 	int		map_sizex;
@@ -32,6 +40,10 @@ typedef struct s_data
 	int		playery;
 	int		playerdx;
 	int		playerdy;
+	int		player_gridx;
+	int		player_gridy;
+	int		player_startx;
+	int		player_starty;
 	double	playera;
 }	t_data;
 
@@ -52,6 +64,7 @@ void	ft_draw_minimap(t_data *gameinfo);	//Draws minimap
 void	ft_draw_square(t_data *gameinfo, int x, int y, int color);	//Draw a square starting at x y
 
 //player_position.c
+void	ft_check_collisions(char **map, int x, int y, t_data *gameinfo); // Checks for collision with walls and adjusts player position to stop
 void	ft_get_player_position(t_data *gameinfo);	// Gets player position and offsets to center of square
 
 //keys.c
