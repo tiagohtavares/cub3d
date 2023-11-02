@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/10/31 13:27:37 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:23:13 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 #define W_WIDTH 1280
 #define W_HEIGHT 720
 
-#define WIDTH 32
-#define HEIGHT 32
+#define WIDTH 64
+#define HEIGHT 64
 
 typedef struct s_data
 {
@@ -45,6 +45,20 @@ typedef struct s_data
 	int		player_startx;
 	int		player_starty;
 	double	playera;
+	double	raya;
+	int		rayy;
+	int		rayx;
+	int		rayofssetx;
+	int		rayofssety;
+	int		mapx;
+	int		mapy;
+	int		mapp;
+	double	distanceH;
+	double	distanceV;
+	int		rayxH;
+	int		rayyH;
+	int		rayxV;
+	int		rayyV;
 }	t_data;
 
 //main.c
@@ -59,9 +73,11 @@ char	**ft_read_map(char *filepath, char **map);	//Reads the map and returns a po
 void	ft_init(t_data *gameinfo);	// Initialize struct
 
 //draw.c
-void	ft_draw_player(t_data *gameinfo, int x, int y, int color);	//Draws player on top of map
+void	ft_draw_player(t_data *gameinfo, int x, int y, int color, int size);	//Draws player on top of map
 void	ft_draw_minimap(t_data *gameinfo);	//Draws minimap
 void	ft_draw_square(t_data *gameinfo, int x, int y, int color);	//Draw a square starting at x y
+void	ft_draw3d(t_data *gameinfo, int distance);
+void	ft_clear(t_data *gameinfo);
 
 //player_position.c
 void	ft_check_collisions(char **map, int x, int y, t_data *gameinfo); // Checks for collision with walls and adjusts player position to stop
@@ -70,4 +86,13 @@ void	ft_get_player_position(t_data *gameinfo);	// Gets player position and offse
 //keys.c
 int	keys(int key, t_data *gameinfo); //Events for key press
 int	x_button(t_data *gameinfo); //Exit clicking on x
+
+//raycast.c
+void	ft_raycast_horizontal(t_data *gameinfo);
+void	ft_raycast_vertical(t_data *gameinfo);
+
+//line.c
+void	ft_line(t_data *gameinfo, int x1, int y1, int x2, int y2, int color);
+double	ft_distance(double x1, double y1, double x2, double y2);
+
 #endif

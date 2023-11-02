@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:20:13 by ttavares          #+#    #+#             */
-/*   Updated: 2023/10/31 12:15:10 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:37:19 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 //Draws player on top of map
-void	ft_draw_player(t_data *gameinfo, int x, int y, int color)
+void	ft_draw_player(t_data *gameinfo, int x, int y, int color, int size)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while(i < WIDTH / 4)
+	while(i < size)
 	{
 		j = 0;
-		while(j < HEIGHT / 4)
+		while(j < size)
 		{
-			mlx_pixel_put(gameinfo->mlx, gameinfo->mlx_window, x + i, y + j, color);
+			mlx_pixel_put(gameinfo->mlx, gameinfo->mlx_window, x + i - (size/2), y + j - (size/2), color);
 			j++;
 		}
 		i++;
@@ -79,5 +79,29 @@ void	ft_draw_minimap(t_data *gameinfo)
 			j++;
 		}
 		i++;
+	}
+}
+
+void	ft_clear(t_data *gameinfo)
+{
+	int	i = 0;
+
+	while(i < W_HEIGHT)
+	{
+		mlx_pixel_put(gameinfo->mlx, gameinfo->mlx_window, 640, i, 0);
+		i++;
+	}
+}
+
+void	ft_draw3d(t_data *gameinfo, int distance)
+{
+	printf("Distance: %d\n" , distance);
+	int	y = 0;
+	int height = 300;
+	height = height - distance ;
+	while(y < height)
+	{
+		mlx_pixel_put(gameinfo->mlx, gameinfo->mlx_window, 640, 360 + y - (height / 2), 0xFFFFFF);
+		y++;
 	}
 }

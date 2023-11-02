@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   keys->c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttavares <ttavares@student->42porto->com>    +#+  +:+       +#+        */
+/*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 15:14:44 by ttavares          #+#    #+#             */
 /*   Updated: 2023/10/30 16:59:45 by ttavares         ###   ########->fr       */
@@ -30,12 +30,28 @@ void	move_w(t_data *gameinfo)
 		gameinfo->player_gridy--;
 
 	} */
-	printf("Px: %d\t|\tPy: %d\n", gameinfo->playerx, gameinfo->playery);
-	printf("Gx: %d\t|\tGy: %d\n", gameinfo->player_gridx, gameinfo->player_gridy);
-	ft_check_collisions(gameinfo->map, gameinfo->player_gridx, gameinfo->player_gridy, gameinfo);
+	printf("Playerx: %d\t|\tPlayery: %d\n", gameinfo->playerx, gameinfo->playery);
+	printf("PlayerGridx: %d\t|\tPlayerGridy: %d\n", gameinfo->player_gridx, gameinfo->player_gridy);
+	printf("Playera: %f\t|\tRaya: %f\n", gameinfo->playera, gameinfo->raya);
+	printf("Rayx: %d\t|\tRayy: %d\n", gameinfo->rayx, gameinfo->rayy);
+	printf("Raygridx: %d\t|\tRaygridy: %d\n", gameinfo->mapx, gameinfo->mapy);
+	//ft_check_collisions(gameinfo->map, gameinfo->player_gridx, gameinfo->player_gridy, gameinfo);
+	ft_clear(gameinfo);
+	ft_raycast_horizontal(gameinfo);
+	ft_raycast_vertical(gameinfo);
 	ft_draw_minimap(gameinfo);
-	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
-	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);
+	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915, 24);
+	printf("DistanceH :%f  DistanceV: %f", gameinfo->distanceH, gameinfo->distanceV);
+	if (gameinfo->distanceH < gameinfo->distanceV)
+	{
+		ft_line(gameinfo, gameinfo->playerx, gameinfo->playery, gameinfo->rayxH, gameinfo->rayyH, 65280);
+		ft_draw3d(gameinfo, gameinfo->distanceH);
+	}
+	else if (gameinfo->distanceH > gameinfo->distanceV)
+	{
+		ft_line(gameinfo, gameinfo->playerx, gameinfo->playery, gameinfo->rayxV, gameinfo->rayyV, 65280);
+		ft_draw3d(gameinfo, gameinfo->distanceV);
+	}
 }
 
 void	move_s(t_data *gameinfo)
@@ -53,36 +69,86 @@ void	move_s(t_data *gameinfo)
 		gameinfo->player_gridy++;
 
 	} */
-	printf("Px: %d\t|\tPy: %d\n", gameinfo->playerx, gameinfo->playery);
-	printf("Gx: %d\t|\tGy: %d\n", gameinfo->player_gridx, gameinfo->player_gridy);
-	ft_check_collisions(gameinfo->map, gameinfo->playerx, gameinfo->playery, gameinfo);
+	printf("Playerx: %d\t|\tPlayery: %d\n", gameinfo->playerx, gameinfo->playery);
+	printf("PlayerGridx: %d\t|\tPlayerGridy: %d\n", gameinfo->player_gridx, gameinfo->player_gridy);
+	printf("Playera: %f\t|\tRaya: %f\n", gameinfo->playera, gameinfo->raya);
+	printf("Rayx: %d\t|\tRayy: %d\n", gameinfo->rayx, gameinfo->rayy);
+	printf("Raygridx: %d\t|\tRaygridy: %d\n", gameinfo->mapx, gameinfo->mapy);
+	//ft_check_collisions(gameinfo->map, gameinfo->playerx, gameinfo->playery, gameinfo);
+	ft_clear(gameinfo);
+	ft_raycast_horizontal(gameinfo);
+	ft_raycast_vertical(gameinfo);
 	ft_draw_minimap(gameinfo);
-	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
-	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);
+	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915, 24);
+	printf("DistanceH :%f  DistanceV: %f", gameinfo->distanceH, gameinfo->distanceV);
+	if (gameinfo->distanceH < gameinfo->distanceV)
+	{
+		ft_line(gameinfo, gameinfo->playerx, gameinfo->playery, gameinfo->rayxH, gameinfo->rayyH, 65280);
+		ft_draw3d(gameinfo, gameinfo->distanceH);
+	}
+	else if (gameinfo->distanceH > gameinfo->distanceV)
+	{
+		ft_line(gameinfo, gameinfo->playerx, gameinfo->playery, gameinfo->rayxV, gameinfo->rayyV, 65280);
+		ft_draw3d(gameinfo, gameinfo->distanceV);
+	}
 }
 
 void	move_a(t_data *gameinfo)
 {
-	gameinfo->playera -= 0.1;
+	gameinfo->playera -= 0.02;
 	if (gameinfo->playera < 0)
 		gameinfo->playera += PI*2;
 	gameinfo->playerdx = (int)((cos(gameinfo->playera) * 5));
 	gameinfo->playerdy = (int)((sin(gameinfo->playera) * 5));
+	printf("Playerx: %d\t|\tPlayery: %d\n", gameinfo->playerx, gameinfo->playery);
+	printf("PlayerGridx: %d\t|\tPlayerGridy: %d\n", gameinfo->player_gridx, gameinfo->player_gridy);
+	printf("Playera: %f\t|\tRaya: %f\n", gameinfo->playera, gameinfo->raya);
+	printf("Rayx: %d\t|\tRayy: %d\n", gameinfo->rayx, gameinfo->rayy);
+	printf("Raygridx: %d\t|\tRaygridy: %d\n", gameinfo->mapx, gameinfo->mapy);
+	ft_clear(gameinfo);
+	ft_raycast_horizontal(gameinfo);
+	ft_raycast_vertical(gameinfo);
 	ft_draw_minimap(gameinfo);
-	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
-	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);
+	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915, 24);
+	printf("DistanceH :%f  DistanceV: %f", gameinfo->distanceH, gameinfo->distanceV);
+	if (gameinfo->distanceH < gameinfo->distanceV)
+	{
+		ft_line(gameinfo, gameinfo->playerx, gameinfo->playery, gameinfo->rayxH, gameinfo->rayyH, 65280);
+		ft_draw3d(gameinfo, gameinfo->distanceH);
+	}
+	else if (gameinfo->distanceH > gameinfo->distanceV)
+	{
+		ft_line(gameinfo, gameinfo->playerx, gameinfo->playery, gameinfo->rayxV, gameinfo->rayyV, 65280);
+		ft_draw3d(gameinfo, gameinfo->distanceV);
+	}
 }
 
 void	move_d(t_data *gameinfo)
 {
-	gameinfo->playera += 0.1;
+	gameinfo->playera += 0.02;
 	if (gameinfo->playera > PI*2)
 		gameinfo->playera -= PI*2;
 	gameinfo->playerdx = (int)((cos(gameinfo->playera) * 5));
 	gameinfo->playerdy = (int)((sin(gameinfo->playera) * 5));
+	printf("Playerx: %d\t|\tPlayery: %d\n", gameinfo->playerx, gameinfo->playery);
+	printf("PlayerGridx: %d\t|\tPlayerGridy: %d\n", gameinfo->player_gridx, gameinfo->player_gridy);
+	printf("Playera: %f\t|\tRaya: %f\n", gameinfo->playera, gameinfo->raya);
+	ft_clear(gameinfo);
+	ft_raycast_horizontal(gameinfo);
+	ft_raycast_vertical(gameinfo);
 	ft_draw_minimap(gameinfo);
-	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
-	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);
+	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915, 24);
+	printf("DistanceH :%f  DistanceV: %f", gameinfo->distanceH, gameinfo->distanceV);
+	if (gameinfo->distanceH < gameinfo->distanceV)
+	{
+		ft_line(gameinfo, gameinfo->playerx, gameinfo->playery, gameinfo->rayxH, gameinfo->rayyH, 65280);
+		ft_draw3d(gameinfo, gameinfo->distanceH);
+	}
+	else if (gameinfo->distanceH > gameinfo->distanceV)
+	{
+		ft_line(gameinfo, gameinfo->playerx, gameinfo->playery, gameinfo->rayxV, gameinfo->rayyV, 65280);
+		ft_draw3d(gameinfo, gameinfo->distanceV);
+	}
 }
 
 void	moves(int key, t_data *gameinfo)
