@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:38 by ttavares          #+#    #+#             */
-/*   Updated: 2023/10/30 15:12:15 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/03 07:15:13 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	ft_map_size(t_data *gameinfo)
 		}
 		i++;
 		gameinfo->map_sizey = i;
-	}	
+	}
+	gameinfo->map_sizetotal = gameinfo->map_sizey * gameinfo->map_sizex;
 }
 
 //Prints the map

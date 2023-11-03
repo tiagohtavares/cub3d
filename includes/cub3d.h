@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/02 17:23:13 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/03 07:49:13 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 #include <math.h>
 #define PI 3.1415926535
+#define ONED 0.0174533 // One degree in radians
 
 //1280x720
 #define W_WIDTH 1280
@@ -34,6 +35,7 @@ typedef struct s_data
 	char	*map_file;
 	void	*mlx;
 	void	*mlx_window;
+	int		map_sizetotal;
 	int		map_sizex;
 	int		map_sizey;
 	int		playerx;
@@ -46,6 +48,9 @@ typedef struct s_data
 	int		player_starty;
 	double	playera;
 	double	raya;
+	double	rayaV;
+	double	rayaH;
+	double	rayfinala;
 	int		rayy;
 	int		rayx;
 	int		rayofssetx;
@@ -55,6 +60,7 @@ typedef struct s_data
 	int		mapp;
 	double	distanceH;
 	double	distanceV;
+	double	finaldistance;
 	int		rayxH;
 	int		rayyH;
 	int		rayxV;
@@ -76,7 +82,7 @@ void	ft_init(t_data *gameinfo);	// Initialize struct
 void	ft_draw_player(t_data *gameinfo, int x, int y, int color, int size);	//Draws player on top of map
 void	ft_draw_minimap(t_data *gameinfo);	//Draws minimap
 void	ft_draw_square(t_data *gameinfo, int x, int y, int color);	//Draw a square starting at x y
-void	ft_draw3d(t_data *gameinfo, int distance);
+void	ft_draw3d(t_data *gameinfo, int r);
 void	ft_clear(t_data *gameinfo);
 
 //player_position.c
@@ -88,11 +94,12 @@ int	keys(int key, t_data *gameinfo); //Events for key press
 int	x_button(t_data *gameinfo); //Exit clicking on x
 
 //raycast.c
-void	ft_raycast_horizontal(t_data *gameinfo);
-void	ft_raycast_vertical(t_data *gameinfo);
+void	ft_raycast(t_data *gameinfo); // Raycast Loop
+void	ft_raycast_horizontal(t_data *gameinfo); // Check colisions horizontal line
+void	ft_raycast_vertical(t_data *gameinfo); // Check colisions vertical line
 
 //line.c
-void	ft_line(t_data *gameinfo, int x1, int y1, int x2, int y2, int color);
-double	ft_distance(double x1, double y1, double x2, double y2);
+void	ft_line(t_data *gameinfo, int x1, int y1, int x2, int y2); // Draw pixels between 2 points
+double	ft_distance(double x1, double y1, double x2, double y2); // Distance between 2 points
 
 #endif
