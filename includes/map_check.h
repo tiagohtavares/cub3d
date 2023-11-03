@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   map_check.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 10:46:56 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/10/31 11:07:44 by heda-sil         ###   ########.fr       */
+/*   Created: 2023/11/02 13:01:59 by heda-sil          #+#    #+#             */
+/*   Updated: 2023/11/03 16:04:15 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef MAP_CHECK_H
+# define MAP_CHECK_H
 
-#include "./cub3d.h"
+#include "../includes/cub3d.h"
+#include "../includes/errors.h"
+#include <stdbool.h>
 
-#define ERROR_USE "ERROR: Iconrrect program usage.\nCorrect usage ./cub3d <map>.cub"
 
+void	ft_check_file_ext(char *file, t_data *gameinfo);
+void	ft_get_textures(char *line, t_texture *textures);
+bool	ft_isempty_line(char *line);
+bool	ft_check_textures(char *line);
+bool	ft_skip_line(int fd, char *line, t_data *gameinfo, int mid_map);
 
-void	error(char *msg, t_data *prog, int exit_code);
-void	terminate_prog(t_data *prog, int exit_code);
 #endif

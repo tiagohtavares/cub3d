@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include "../includes/error.h"
+#include "../includes/errors.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -19,8 +19,8 @@ void	move_w(t_data *gameinfo)
 {
 	gameinfo->playerx -= gameinfo->playerdx;
 	gameinfo->playery -= gameinfo->playerdy;
-	gameinfo->player_gridx = gameinfo->playerx / WIDTH;
-	gameinfo->player_gridy = gameinfo->playery / HEIGHT;
+	gameinfo->player_gridx = gameinfo->playerx / MAP_WIDTH;
+	gameinfo->player_gridy = gameinfo->playery / MAP_HEIGHT;
 	/* if (gameinfo->playerx % WIDTH == 0)
 	{
 		gameinfo->player_gridx--;
@@ -42,8 +42,8 @@ void	move_s(t_data *gameinfo)
 {
 	gameinfo->playerx += gameinfo->playerdx;
 	gameinfo->playery += gameinfo->playerdy;
-	gameinfo->player_gridx = gameinfo->playerx / WIDTH;
-	gameinfo->player_gridy = gameinfo->playery / HEIGHT;
+	gameinfo->player_gridx = gameinfo->playerx / MAP_WIDTH;
+	gameinfo->player_gridy = gameinfo->playery / MAP_HEIGHT;
 	/* if (gameinfo->playerx % WIDTH == 0)
 	{
 		gameinfo->player_gridx++;
@@ -63,11 +63,11 @@ void	move_s(t_data *gameinfo)
 
 void	move_a(t_data *gameinfo)
 {
-	gameinfo->playera -= 0.1;
-	if (gameinfo->playera < 0)
-		gameinfo->playera += PI*2;
-	gameinfo->playerdx = (int)((cos(gameinfo->playera) * 5));
-	gameinfo->playerdy = (int)((sin(gameinfo->playera) * 5));
+	gameinfo->player_angle -= 0.1;
+	if (gameinfo->player_angle < 0)
+		gameinfo->player_angle += PI*2;
+	gameinfo->playerdx = (int)((cos(gameinfo->player_angle) * 5));
+	gameinfo->playerdy = (int)((sin(gameinfo->player_angle) * 5));
 	ft_draw_minimap(gameinfo);
 	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
 	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);
@@ -75,11 +75,11 @@ void	move_a(t_data *gameinfo)
 
 void	move_d(t_data *gameinfo)
 {
-	gameinfo->playera += 0.1;
-	if (gameinfo->playera > PI*2)
-		gameinfo->playera -= PI*2;
-	gameinfo->playerdx = (int)((cos(gameinfo->playera) * 5));
-	gameinfo->playerdy = (int)((sin(gameinfo->playera) * 5));
+	gameinfo->player_angle += 0.1;
+	if (gameinfo->player_angle > PI*2)
+		gameinfo->player_angle -= PI*2;
+	gameinfo->playerdx = (int)((cos(gameinfo->player_angle) * 5));
+	gameinfo->playerdy = (int)((sin(gameinfo->player_angle) * 5));
 	ft_draw_minimap(gameinfo);
 	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
 	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);

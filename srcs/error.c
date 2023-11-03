@@ -6,15 +6,13 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/10/31 12:04:38 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:33:38 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-#include "../includes/error.h"
-#include <stdio.h>
+#include "../includes/errors.h"
 
-void error(char *msg, t_data *prog, int exit_code)
+void	ft_error(char *msg, t_data *prog, int exit_code)
 {
 	ft_putendl_fd(msg, STDERR_FILENO);
 	terminate_prog(prog, exit_code);
@@ -24,6 +22,10 @@ void	*ft_db_free(char **ptr)
 {
 	int	i;
 
+	if (!ptr)
+	{
+		return (NULL);
+	}
 	i = -1;
 	while (ptr[++i])
 	{
@@ -34,10 +36,12 @@ void	*ft_db_free(char **ptr)
 	return (ptr);
 }
 
+// Frees all allocs and exits
 void	terminate_prog(t_data *prog, int exit_code)
 {
 	if (prog)
 	{
+		free_wall_textures(&prog->textures.walls, prog->mlx);
 		if (prog->mlx_window)
 		{
 			mlx_destroy_window(prog->mlx, prog->mlx_window);
@@ -47,14 +51,29 @@ void	terminate_prog(t_data *prog, int exit_code)
 			mlx_destroy_display(prog->mlx);
 			free(prog->mlx);
 		}
-		if (prog->map)
-		{
-			prog->map = ft_db_free(prog->map);
-		}
-		if (prog->map_file)
-		{
-			free(prog->map_file);
-		}
+		prog->map = ft_db_free(prog->map);
+		free(prog->map_file);
 	}
 	exit(exit_code);
+}
+
+// Frees the walls and destroys the img
+void	free_wall_textures(t_wall **walls, void *mlx)	// FIX: Broken only cleans the first one my pointer logic is way off
+{
+	int	i;
+
+	i = 0;
+	while (walls[i])
+	{
+		free(walls[i]->path);
+		walls[i]->path = NULL;
+		if (walls[i]->img)
+		{
+			mlx_destroy_image(mlx, walls[i]->img);
+			walls[i]->img = NULL;
+		}
+		i++;
+	}
+	free(*walls);
+	*walls = NULL;
 }

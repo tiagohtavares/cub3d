@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/10/31 13:27:37 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:09:52 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,61 @@
 #include <math.h>
 #define PI 3.1415926535
 
-//1280x720
+// Windown size 1280x720
 #define W_WIDTH 1280
 #define W_HEIGHT 720
 
+// Texture sizes
 #define WIDTH 32
 #define HEIGHT 32
 
+// Minimap size
+#define MAP_WIDTH 8
+#define MAP_HEIGHT 8
+
+enum e_walls
+{
+	N,
+	S,
+	E,
+	W
+};
+
+// Struct for wall textures, it will prob need to include mlx stuff
+typedef struct s_wall
+{
+	char	*path;
+	void	*img;
+	int		width;
+	int		height;
+}		t_wall;
+
+// Struct to keep track of all textures including ceiling and floor color
+typedef struct s_texture
+{
+	t_wall	*walls;
+	int		floor;
+	int		ceiling;
+}			t_texture;
+
 typedef struct s_data
 {
-	char	**map;
-	char	*map_file;
-	void	*mlx;
-	void	*mlx_window;
-	int		map_sizex;
-	int		map_sizey;
-	int		playerx;
-	int		playery;
-	int		playerdx;
-	int		playerdy;
-	int		player_gridx;
-	int		player_gridy;
-	int		player_startx;
-	int		player_starty;
-	double	playera;
+	char		**map;
+	char		*map_file;
+	void		*mlx;
+	void		*mlx_window;
+	int			map_width;
+	int			map_height;
+	int			playerx;
+	int			playery;
+	int			playerdx;
+	int			playerdy;
+	int			player_gridx;
+	int			player_gridy;
+	int			player_startx;
+	int			player_starty;
+	double		player_angle;
+	t_texture	textures;
 }	t_data;
 
 //main.c
@@ -53,7 +84,7 @@ typedef struct s_data
 //read_map.c
 void	ft_map_size(t_data *gameinfo);	//Gets map size
 void	ft_map_print(char **map);	//Prints the map
-char	**ft_read_map(char *filepath, char **map);	//Reads the map and returns a pointer to it
+char	**ft_read_map(char *filepath, char **map, t_data *gameinfo);	//Reads the map and returns a pointer to it
 
 //init.c
 void	ft_init(t_data *gameinfo);	// Initialize struct

@@ -6,7 +6,7 @@
 #    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/10/31 11:48:27 by heda-sil         ###   ########.fr        #
+#    Updated: 2023/11/03 16:34:28 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ VFLAGS+= --log-file=mem.log
 endif
 
 SRCS =	./srcs/main ./srcs/read_map ./srcs/init ./srcs/draw ./srcs/player_position \
-		./srcs/keys ./srcs/error \
+		./srcs/keys ./srcs/error ./srcs/map_check \
 		./get_next_line/get_next_line ./get_next_line/get_next_line_utils
 
 OBJS = $(SRCS:=.o)
@@ -52,7 +52,7 @@ $(MINILIBX):
 	make -C $(MINILIBX_DIR)
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	$(CC) -g $(OBJS) $(MINILIBX) -I./includes -lXext -lX11 -lm $(LIBFT) -o $(NAME)
+	$(CC) $(OBJS) $(MINILIBX) -lXext -lX11 -lm $(LIBFT) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)
@@ -63,16 +63,16 @@ fclean:	clean
 	$(RM) $(NAME)
 	make fclean -C $(LIBFT_DIR)
 
-re:	fclean all bonus
+re:	fclean all
 
 debug:
-	${MAKE} DEBUG=1 all
+	${MAKE} DEBUG=1 re
 
 run: all
 	${MAKE} clean
-	./cub3d ./assets/test.cub
+	./cub3d ./assets/maps/valid/map.cub
 
 mem:
 	${MAKE} DEBUG=1
 	${MAKE} clean
-	valgrind ${VFLAGS} ./cub3d ./assets/test.cub
+	valgrind ${VFLAGS} ./cub3d ./assets/maps/valid/map.cub
