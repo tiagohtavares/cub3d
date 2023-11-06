@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:52:11 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/03 16:06:23 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:24:50 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_check_file_ext(char *file, t_data *gameinfo)
 	}
 }
 
+// Checks if line contains one of the textures
 bool	ft_check_textures(char *line)
 {
 	if (ft_strnstr(line, "NO", ft_strlen(line)))
@@ -107,23 +108,17 @@ bool	ft_isempty_line(char *line)
 	return (true);
 }
 
-bool	ft_skip_line(int fd, char *line, t_data *gameinfo, int mid_map)
+// Skips all lines that don't contain map information (texture and blank line)
+int	ft_skip_line(char *line, t_data *gameinfo)
 {
-	if (ft_isempty_line(line) && !mid_map)	// Skips empty lines
+	if (ft_isempty_line(line))	// Skips empty lines
 	{
-		return (true);
-	}
-	if (ft_isempty_line(line) && mid_map)	// Checks if theres an empty line in the middle of the map
-	{
-		close(fd);
-		free(line);
-		// free(all_lines);
-		ft_error(ERR_NL, gameinfo, EXIT_FAILURE);
+		return (1);
 	}
 	if (ft_check_textures(line))	// Skips texture lines
 	{
 		ft_get_textures(line, &gameinfo->textures);
-		return (true);
+		return (1);
 	}
-	return (false);
+	return (0);
 }

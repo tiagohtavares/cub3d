@@ -1,14 +1,14 @@
 NO ./assets/textures/wall.xpm
+
 SO ./assets/textures/wall.xpm
+
 WE ./assets/textures/wall.xpm
+
 EA ./assets/textures/wall.xpm
 
-
-
-
 F 220,100,0
-C 225,30,0
 
+C 225,30,0
 
 
 

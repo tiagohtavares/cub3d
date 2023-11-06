@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/03 15:09:52 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:41:53 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ typedef struct s_texture
 
 typedef struct s_data
 {
+	t_list		*map_file;
 	char		**map;
-	char		*map_file;
+	char		*file_path;
 	void		*mlx;
 	void		*mlx_window;
 	int			map_width;
@@ -82,9 +83,7 @@ typedef struct s_data
 
 
 //read_map.c
-void	ft_map_size(t_data *gameinfo);	//Gets map size
-void	ft_map_print(char **map);	//Prints the map
-char	**ft_read_map(char *filepath, char **map, t_data *gameinfo);	//Reads the map and returns a pointer to it
+
 
 //init.c
 void	ft_init(t_data *gameinfo);	// Initialize struct

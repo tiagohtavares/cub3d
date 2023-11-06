@@ -6,12 +6,13 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:05:36 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/03 15:26:30 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:44:10 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 #include "../includes/errors.h"
+#include "../includes/debug.h"
 
 int	main(int argc, char **argv)
 {
@@ -21,7 +22,7 @@ int	main(int argc, char **argv)
 	{
 		ft_error(ERR_USE, NULL, EXIT_FAILURE);
 	}
-	gameinfo.map_file = ft_strdup(argv[1]);
+	gameinfo.file_path = ft_strdup(argv[1]);
 	ft_init(&gameinfo);
 	ft_draw_minimap(&gameinfo);
 	ft_draw_player(&gameinfo, gameinfo.playerx, gameinfo.playery, 10197915);

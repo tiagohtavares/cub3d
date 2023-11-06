@@ -6,7 +6,7 @@
 #    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/11/03 16:34:28 by heda-sil         ###   ########.fr        #
+#    Updated: 2023/11/06 16:07:21 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ endif
 
 SRCS =	./srcs/main ./srcs/read_map ./srcs/init ./srcs/draw ./srcs/player_position \
 		./srcs/keys ./srcs/error ./srcs/map_check \
-		./get_next_line/get_next_line ./get_next_line/get_next_line_utils
+		./get_next_line/get_next_line ./get_next_line/get_next_line_utils \
+		./srcs/debug
 
 OBJS = $(SRCS:=.o)
 
@@ -46,7 +47,7 @@ NAME = cub3d
 all:	$(NAME)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	make bonus -C $(LIBFT_DIR)
 
 $(MINILIBX):
 	make -C $(MINILIBX_DIR)

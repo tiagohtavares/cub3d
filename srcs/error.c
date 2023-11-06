@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/03 16:33:38 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:21:21 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	terminate_prog(t_data *prog, int exit_code)
 {
 	if (prog)
 	{
-		free_wall_textures(&prog->textures.walls, prog->mlx);
+		free_wall_textures(&prog->textures, prog->mlx);
 		if (prog->mlx_window)
 		{
 			mlx_destroy_window(prog->mlx, prog->mlx_window);
@@ -52,28 +52,28 @@ void	terminate_prog(t_data *prog, int exit_code)
 			free(prog->mlx);
 		}
 		prog->map = ft_db_free(prog->map);
-		free(prog->map_file);
+		free(prog->file_path);
+		ft_lstclear(&prog->map_file,  free);
 	}
 	exit(exit_code);
 }
 
 // Frees the walls and destroys the img
-void	free_wall_textures(t_wall **walls, void *mlx)	// FIX: Broken only cleans the first one my pointer logic is way off
+void	free_wall_textures(t_texture *texture, void *mlx)
 {
 	int	i;
 
-	i = 0;
-	while (walls[i])
+	i = -1;
+	while (++i < 4)
 	{
-		free(walls[i]->path);
-		walls[i]->path = NULL;
-		if (walls[i]->img)
+		free(texture->walls[i].path);
+		texture->walls[i].path = NULL;
+		if (texture->walls[i].img)
 		{
-			mlx_destroy_image(mlx, walls[i]->img);
-			walls[i]->img = NULL;
+			mlx_destroy_image(mlx, texture->walls[i].img);
+			texture->walls[i].img = NULL;
 		}
-		i++;
 	}
-	free(*walls);
-	*walls = NULL;
+	free(texture->walls);
+	texture->walls = NULL;
 }

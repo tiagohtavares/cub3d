@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:46:56 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/03 14:20:34 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:59:48 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@
 
 void	ft_error(char *msg, t_data *prog, int exit_code);
 void	terminate_prog(t_data *prog, int exit_code);
-void	free_wall_textures(t_wall **walls, void *mlx);
+void	free_wall_textures(t_texture *texture, void *mlx);
 void	*ft_db_free(char **ptr);
 #endif
