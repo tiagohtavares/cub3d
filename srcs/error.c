@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/06 17:21:21 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:35:45 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_error(char *msg, t_data *prog, int exit_code)
 	terminate_prog(prog, exit_code);
 }
 
+// Free char ** and returns it after setting it to NULL
 void	*ft_db_free(char **ptr)
 {
 	int	i;

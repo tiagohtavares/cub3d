@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/06 17:45:38 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:38:32 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_init(t_data *gameinfo)
 {
 	gameinfo->mlx = NULL;
 	gameinfo->mlx_window = NULL;
+	gameinfo->map = NULL;
 	gameinfo->playerx = 0;
 	gameinfo->playery = 0;
 	gameinfo->player_gridx = 0;
