@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/07 10:38:32 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:00:49 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_init(t_data *gameinfo)
 	gameinfo->player_gridy = 0;
 	gameinfo->map_width = 0;
 	gameinfo->map_height = 0;
-	gameinfo->textures.ceiling = 0;	//TMP - Prob change the value
-	gameinfo->textures.floor = 0;	//TMP - Prob change to -1 or something
+	gameinfo->textures.ceiling = -1;
+	gameinfo->textures.floor = -1;
 	gameinfo->textures.walls = ft_calloc(4, sizeof(*gameinfo->textures.walls));
 	gameinfo->player_angle = PI / 2;
 	gameinfo->map_file = NULL;

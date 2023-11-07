@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:46:56 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/06 16:59:48 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:57:44 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 #define ERR_WALLS "Error\nMap must be surrounded by walls"
 #define ERR_FORMAT "Error\nMap must be the last element of the scene"
 #define ERR_TEXTMISS "Error\nMissing one or more textures"
-#define ERR_TEXTINV "Error\nInvalid texture"	// Check if mlx func to convert mlx to img works, if fails, prob invalid texture file
+#define ERR_TEXTINV "Error\nInvalid texture"
 #define ERR_TEXTINFO "Error\nInvalid texture path or color"
+#define ERR_TEXTDUP "Error\nDuplicated texture"
 
 void	ft_error(char *msg, t_data *prog, int exit_code);
 void	terminate_prog(t_data *prog, int exit_code);

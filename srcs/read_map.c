@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:38 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/06 17:43:04 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:15:05 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	ft_map_size(t_data *gameinfo)
 	int	j;
 
 	i = 0;
-	while(gameinfo->map[i])
+	while (gameinfo->map[i])
 	{
 		j = 0;
-		while(gameinfo->map[i][j])
+		while (gameinfo->map[i][j])
 		{
 			j++;
-			if(j > gameinfo->map_width)
+			if (j > gameinfo->map_width)
 				gameinfo->map_width = j;
 		}
 		i++;
@@ -33,7 +33,8 @@ void	ft_map_size(t_data *gameinfo)
 	}
 }
 
-//Reads the .cub file and saves it on a linked list to keep us from reading the file multiple times
+/* Reads the .cub file and saves it on a linked list to keep us from reading the
+file multiple times */
 void	ft_read_file(char *filepath, t_data *gameinfo)
 {
 	int		fd;
@@ -60,12 +61,13 @@ void	ft_read_file(char *filepath, t_data *gameinfo)
 }
 
 // Loops the list and finds the line where map start/also saves the texture info
+// BUG?: If file has more than one newline after map it considers as error of new line
 void	ft_read_map(t_list *file, t_data *gameinfo)
 {
 	int		map_start;
 	int		mid_map;
 
-	map_start = 1;
+	map_start = 0;
 	mid_map = 0;
 	while (file)
 	{
@@ -75,7 +77,7 @@ void	ft_read_map(t_list *file, t_data *gameinfo)
 			map_start++;
 			continue ;
 		}
-		else if (ft_skip_line(file->content, gameinfo) && mid_map)	// If empty line
+		else if (ft_skip_line(file->content, gameinfo) && mid_map) // If empty line
 		{
 			ft_error(ERR_NL, gameinfo, EXIT_FAILURE);
 		}
@@ -86,7 +88,6 @@ void	ft_read_map(t_list *file, t_data *gameinfo)
 	ft_get_map(gameinfo, map_start);
 }
 
-
 // Loops the list and copies the map to a char **
 void	ft_get_map(t_data *gameinfo, int start)
 {
@@ -95,7 +96,7 @@ void	ft_get_map(t_data *gameinfo, int start)
 	char	*map;
 
 	tmp = gameinfo->map_file;
-	while (start-- > 1)	// Skips the file to the starting line of the map
+	while (start--) // Skips the file to the starting line of the map
 	{
 		tmp = tmp->next;
 	}

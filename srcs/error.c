@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/07 10:35:45 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/07 10:57:20 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_error(char *msg, t_data *prog, int exit_code)
 {
-	ft_putendl_fd(msg, STDERR_FILENO);
+	ft_putendl_fd(msg, STDOUT_FILENO);
 	terminate_prog(prog, exit_code);
 }
 

@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 13:01:59 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/06 17:42:02 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:10:11 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	ft_check_file_ext(char *file, t_data *gameinfo);
 void	ft_get_textures(char *line, t_texture *textures);
 bool	ft_isempty_line(char *line);
 bool	ft_check_textures(char *line);
-int		ft_skip_line(char *line, t_data *gameinfo);
+bool	ft_skip_line(char *line, t_data *gameinfo);
 
 #endif

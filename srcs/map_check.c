@@ -6,18 +6,17 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:52:11 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/06 17:24:50 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:13:53 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/map_check.h"
 
-
 // Checks if the file is a .cub file
 void	ft_check_file_ext(char *file, t_data *gameinfo)
 {
-	char *file_ext;
-	char *file_name;
+	char	*file_ext;
+	char	*file_name;
 
 	file_name = ft_strrchr(file, '/');
 	if (!file_name)
@@ -68,7 +67,7 @@ void	ft_get_textures(char *line, t_texture *textures)
 {
 	if (ft_strnstr(line, "NO", ft_strlen(line)))
 	{
-		textures->walls[N].path = ft_strdup(line);	// TMP: split to get only path
+		textures->walls[N].path = ft_strdup(line); // TMP: split to get only path
 	}
 	else if (ft_strnstr(line, "SO", ft_strlen(line)))
 	{
@@ -84,11 +83,11 @@ void	ft_get_textures(char *line, t_texture *textures)
 	}
 	else if (ft_strnstr(line, "C", ft_strlen(line)))
 	{
-		textures->ceiling = 0;	//TMP: Get func to extract color
+		textures->ceiling = 0; //TMP: Get func to extract color
 	}
 	else if (ft_strnstr(line, "F", ft_strlen(line)))
 	{
-		textures->floor = 0;	//TMP: Get func to extract color
+		textures->floor = 0; //TMP: Get func to extract color
 	}
 }
 
@@ -109,16 +108,16 @@ bool	ft_isempty_line(char *line)
 }
 
 // Skips all lines that don't contain map information (texture and blank line)
-int	ft_skip_line(char *line, t_data *gameinfo)
+bool	ft_skip_line(char *line, t_data *gameinfo)
 {
-	if (ft_isempty_line(line))	// Skips empty lines
+	if (ft_isempty_line(line)) // Skips empty lines
 	{
-		return (1);
+		return (true);
 	}
-	if (ft_check_textures(line))	// Skips texture lines
+	if (ft_check_textures(line)) // Skips texture lines
 	{
 		ft_get_textures(line, &gameinfo->textures);
-		return (1);
+		return (true);
 	}
-	return (0);
+	return (false);
 }
