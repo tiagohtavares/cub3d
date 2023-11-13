@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:38 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/07 11:15:05 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:12:53 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,21 @@ void	ft_read_map(t_list *file, t_data *gameinfo)
 	mid_map = 0;
 	while (file)
 	{
-		if (ft_skip_line(file->content, gameinfo) && !mid_map)
+		printf("Line: %d\n", map_start + 1); // REMOVE
+		if (!mid_map && ft_skip_line(file->content, gameinfo))
 		{
 			file = file->next;
 			map_start++;
 			continue ;
 		}
-		else if (ft_skip_line(file->content, gameinfo) && mid_map) // If empty line
+		else if (ft_isempty_line(file->content) && mid_map) // If empty line
 		{
+			printf("read_map 82\n"); // REMOVE
 			ft_error(ERR_NL, gameinfo, EXIT_FAILURE);
 		}
 		mid_map = 1;
-		gameinfo->map_height++;
 		file = file->next;
+		gameinfo->map_height++;
 	}
 	ft_get_map(gameinfo, map_start);
 }

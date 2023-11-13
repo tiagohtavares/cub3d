@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 13:01:59 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/07 12:10:11 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:59:59 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@
 #include "./debug.h"
 
 void	ft_check_file_ext(char *file, t_data *gameinfo);
-void	ft_get_textures(char *line, t_texture *textures);
+void	ft_get_textures(char *line, t_texture *textures, t_data *gameinfo);
 bool	ft_isempty_line(char *line);
 bool	ft_check_textures(char *line);
 bool	ft_skip_line(char *line, t_data *gameinfo);
+int		ft_get_colors(char *line, t_data *gameinfo);
+char	**ft_validate_colors(char *line, t_data *gameinfo);
+char	*ft_extract_texture(char *line, t_data *gameinfo);
 
 #endif

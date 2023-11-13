@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/07 12:00:49 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:17:04 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_init(t_data *gameinfo)
 	gameinfo->map_file = NULL;
 	gameinfo->playerdx = (int)((cos(gameinfo->player_angle) * 5));
 	gameinfo->playerdy = (int)((sin(gameinfo->player_angle) * 5));
+	gameinfo->textures.nbr_txt = 0;
 	ft_read_file(gameinfo->file_path, gameinfo);
 	ft_map_size(gameinfo);
 	ft_get_player_position(gameinfo);

@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/06 17:41:53 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:15:06 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_texture
 	t_wall	*walls;
 	int		floor;
 	int		ceiling;
+	int		nbr_txt;
 }			t_texture;
 
 typedef struct s_data
