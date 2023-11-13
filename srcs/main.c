@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:05:36 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/03 05:06:22 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:49:49 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ int	main(int argc, char **argv)
 	gameinfo.map_file = ft_strdup(argv[1]);
 	ft_init(&gameinfo);
 	mlx_hook(gameinfo.mlx_window, 17, (1L << 0), x_button, &gameinfo);
-	ft_draw_minimap(&gameinfo);
-	ft_draw_player(&gameinfo, gameinfo.playerx, gameinfo.playery, 10197915, 24);
-	ft_raycast(&gameinfo);
 	mlx_key_hook(gameinfo.mlx_window, &keys, &gameinfo);
 	mlx_loop(gameinfo.mlx);
 	terminate_prog(&gameinfo, EXIT_SUCCESS);

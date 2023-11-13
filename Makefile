@@ -6,7 +6,7 @@
 #    By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/11/02 14:23:48 by ttavares         ###   ########.fr        #
+#    Updated: 2023/11/13 12:22:43 by ttavares         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ VFLAGS+= --log-file=mem.log
 
 endif
 
-SRCS =	./srcs/main ./srcs/read_map ./srcs/init ./srcs/draw ./srcs/player_position \
-		./srcs/keys ./srcs/error ./srcs/raycast ./srcs/line \
+SRCS =	./srcs/main ./srcs/read_map ./srcs/init ./srcs/player_position\
+		./srcs/keys ./srcs/error ./srcs/raycast ./srcs/draw \
 		./get_next_line/get_next_line ./get_next_line/get_next_line_utils
 
 OBJS = $(SRCS:=.o)

@@ -6,48 +6,12 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:38 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/03 07:15:13 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:05:09 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-//Gets map size
-void	ft_map_size(t_data *gameinfo)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while(gameinfo->map[i])
-	{
-		j = 0;
-		while(gameinfo->map[i][j])
-		{
-			j++;
-			if(j > gameinfo->map_sizex)
-				gameinfo->map_sizex = j;
-		}
-		i++;
-		gameinfo->map_sizey = i;
-	}
-	gameinfo->map_sizetotal = gameinfo->map_sizey * gameinfo->map_sizex;
-}
-
-//Prints the map
-void	ft_map_print(char **map)
-{
-	int	i;
-
-	i = 0;
-	while(map[i])
-	{
-		ft_printf("%s\n",map[i]);
-		i++;
-	}
-}
-
-//Reads the map and returns a pointer to it
 char	**ft_read_map(char *filepath, char **map)
 {
 	int		fd;

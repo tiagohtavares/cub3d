@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/03 07:49:13 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:37:01 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,19 @@
 #include "get_next_line.h"
 #include "../minilibx-linux/mlx.h"
 #include "../minilibx-linux/mlx_int.h"
-
 #include <math.h>
-#define PI 3.1415926535
-#define ONED 0.0174533 // One degree in radians
 
-//1280x720
-#define W_WIDTH 1280
-#define W_HEIGHT 720
+#define W_WIDTH 900
+#define W_HEIGHT 900
 
 #define WIDTH 64
 #define HEIGHT 64
+
+#define C_RED 16711680
+#define C_BLUE 255
+#define C_GREEN 65280
+#define C_WHITE 16777215
+#define C_BLACK 0
 
 typedef struct s_data
 {
@@ -35,71 +37,48 @@ typedef struct s_data
 	char	*map_file;
 	void	*mlx;
 	void	*mlx_window;
-	int		map_sizetotal;
-	int		map_sizex;
-	int		map_sizey;
-	int		playerx;
-	int		playery;
-	int		playerdx;
-	int		playerdy;
-	int		player_gridx;
-	int		player_gridy;
-	int		player_startx;
-	int		player_starty;
-	double	playera;
-	double	raya;
-	double	rayaV;
-	double	rayaH;
-	double	rayfinala;
-	int		rayy;
-	int		rayx;
-	int		rayofssetx;
-	int		rayofssety;
+	double	playerx;
+	double	playery;
+	double	inidirx;
+	double	inidiry;
+	double	planex;
+	double	planey;
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	double	distancex;
+	double	distancey;
+	double	deltax;
+	double	deltay;
+	double	perpwalldistance;
+	int		stepx;
+	int		stepy;
+	int		hit;
+	int		side;
 	int		mapx;
 	int		mapy;
-	int		mapp;
-	double	distanceH;
-	double	distanceV;
-	double	finaldistance;
-	int		rayxH;
-	int		rayyH;
-	int		rayxV;
-	int		rayyV;
+	int		color;
+	double	lineh;
 }	t_data;
 
-//main.c
-
-
 //read_map.c
-void	ft_map_size(t_data *gameinfo);	//Gets map size
-void	ft_map_print(char **map);	//Prints the map
-char	**ft_read_map(char *filepath, char **map);	//Reads the map and returns a pointer to it
+char	**ft_read_map(char *filepath, char **map);
 
 //init.c
-void	ft_init(t_data *gameinfo);	// Initialize struct
-
-//draw.c
-void	ft_draw_player(t_data *gameinfo, int x, int y, int color, int size);	//Draws player on top of map
-void	ft_draw_minimap(t_data *gameinfo);	//Draws minimap
-void	ft_draw_square(t_data *gameinfo, int x, int y, int color);	//Draw a square starting at x y
-void	ft_draw3d(t_data *gameinfo, int r);
-void	ft_clear(t_data *gameinfo);
-
-//player_position.c
-void	ft_check_collisions(char **map, int x, int y, t_data *gameinfo); // Checks for collision with walls and adjusts player position to stop
-void	ft_get_player_position(t_data *gameinfo);	// Gets player position and offsets to center of square
+void	ft_start(t_data *gameinfo);
+void	ft_init(t_data *gameinfo);
 
 //keys.c
-int	keys(int key, t_data *gameinfo); //Events for key press
+int	keys(int key, t_data *gameinfo);
 int	x_button(t_data *gameinfo); //Exit clicking on x
 
+//player_position.c
+void	ft_get_player_position(t_data *gameinfo);
+
 //raycast.c
-void	ft_raycast(t_data *gameinfo); // Raycast Loop
-void	ft_raycast_horizontal(t_data *gameinfo); // Check colisions horizontal line
-void	ft_raycast_vertical(t_data *gameinfo); // Check colisions vertical line
+void	ft_raycast(t_data *gameinfo);
 
-//line.c
-void	ft_line(t_data *gameinfo, int x1, int y1, int x2, int y2); // Draw pixels between 2 points
-double	ft_distance(double x1, double y1, double x2, double y2); // Distance between 2 points
-
+//draw.c
+void	ft_draw_vertical(t_data *gameinfo, int x, int start, int end, int color);
+void	ft_clear(t_data *gameinfo);
 #endif
