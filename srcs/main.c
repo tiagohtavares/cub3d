@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:05:36 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/14 11:21:43 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/14 12:16:03 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ int	main(int argc, char **argv)
 	}
 	gameinfo.file_path = ft_strdup(argv[1]);
 	ft_init(&gameinfo);
-	mlx_hook(gameinfo.mlx_window, 17, (1L << 0), x_button, &gameinfo);
+/* 	mlx_hook(gameinfo.mlx_window, 17, (1L << 0), x_button, &gameinfo);
 	mlx_key_hook(gameinfo.mlx_window, &keys, &gameinfo);
-	mlx_loop(gameinfo.mlx);
-	ft_map_print(gameinfo.map);
+	mlx_loop(gameinfo.mlx); */
 	terminate_prog(&gameinfo, EXIT_SUCCESS);
 	return (0);
 }

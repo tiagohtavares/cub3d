@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:38 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/14 11:29:25 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:45:07 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	ft_map_size(t_data *gameinfo)
 	int	j;
 
 	i = 0;
-	while(gameinfo->map[i])
+	while (gameinfo->map[i])
 	{
 		j = 0;
-		while(gameinfo->map[i][j])
+		while (gameinfo->map[i][j])
 		{
 			j++;
-			if(j > gameinfo->map_width)
+			if (j > gameinfo->map_width)
 				gameinfo->map_width = j;
 		}
 		i++;
@@ -55,25 +55,31 @@ void	ft_read_file(char *filepath, t_data *gameinfo)
 		free(line);
 		line = get_next_line(fd);
 	}
-	close(fd);
+	if (close(fd) < -1)
+	{
+		ft_error(ERR_CLOSE, gameinfo, EXIT_FAILURE);
+	}
 	gameinfo->map_file = map;
 	ft_read_map(map, gameinfo);
 }
 
 // Loops the list and finds the line where map start/also saves the texture info
-// BUG?: If file has more than one newline after map it considers as error of new line
+// BUG?: If file has any newline after map it considers as error of new line
 void	ft_read_map(t_list *file, t_data *gameinfo)
 {
 	int		map_start;
 	int		mid_map;
+	int		line; // REMOVE
 
+	line = 1;
 	map_start = 0;
 	mid_map = 0;
 	while (file)
 	{
-		printf("Line: %d\n", map_start + 1); // REMOVE
+		printf("Line: %d\n", line); // REMOVE
 		if (!mid_map && ft_skip_line(file->content, gameinfo))
 		{
+			line++; // REMOVE
 			file = file->next;
 			map_start++;
 			continue ;
@@ -83,6 +89,7 @@ void	ft_read_map(t_list *file, t_data *gameinfo)
 			printf("read_map 82\n"); // REMOVE
 			ft_error(ERR_NL, gameinfo, EXIT_FAILURE);
 		}
+		line++; // REMOVE
 		mid_map = 1;
 		file = file->next;
 		gameinfo->map_height++;

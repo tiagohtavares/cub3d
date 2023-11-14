@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:52:11 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/14 11:49:04 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:32:34 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,27 +66,27 @@ void	ft_get_textures(char *line, t_texture *textures, t_data *gameinfo)
 {
 	if (ft_strnstr(line, "NO", ft_strlen(line)))
 	{
-		textures->walls[N].path = ft_extract_texture(line, gameinfo);
+		textures->walls[N].path = ft_extract_texture(line, gameinfo, &textures->walls[N]);
 	}
 	else if (ft_strnstr(line, "SO", ft_strlen(line)))
 	{
-		textures->walls[S].path = ft_extract_texture(line, gameinfo);
+		textures->walls[S].path = ft_extract_texture(line, gameinfo, &textures->walls[S]);
 	}
 	else if (ft_strnstr(line, "EA", ft_strlen(line)))
 	{
-		textures->walls[E].path = ft_extract_texture(line, gameinfo);
+		textures->walls[E].path = ft_extract_texture(line, gameinfo, &textures->walls[E]);
 	}
 	else if (ft_strnstr(line, "WE", ft_strlen(line)))
 	{
-		textures->walls[W].path = ft_extract_texture(line, gameinfo);
+		textures->walls[W].path = ft_extract_texture(line, gameinfo, &textures->walls[W]);
 	}
 	else if (ft_strnstr(line, "C", ft_strlen(line)))
 	{
-		textures->ceiling = ft_get_colors(line, gameinfo);
+		textures->ceiling = ft_get_colors(line, gameinfo, textures->ceiling);
 	}
 	else if (ft_strnstr(line, "F", ft_strlen(line)))
 	{
-		textures->floor = ft_get_colors(line, gameinfo);
+		textures->floor = ft_get_colors(line, gameinfo, textures->floor);
 	}
 }
 
@@ -115,26 +115,28 @@ bool	ft_skip_line(char *line, t_data *gameinfo)
 	{
 		return (true);
 	}
-	else if (ft_check_textures(line)) // Skips texture lines
+	else if (gameinfo->textures.nbr_txt < 6 && ft_check_textures(line)) // Skips texture lines
 	{
 		ft_get_textures(line, &gameinfo->textures, gameinfo);
 		return (true);
 	}
+	else if (gameinfo->textures.nbr_txt < 6)
+	{
+		ft_error(ERR_TEXTMISS, gameinfo, EXIT_FAILURE);
+	}
 	return (false);
 }
 
-// Validates and extracts color values from R,G,B to int
-int	ft_get_colors(char *line, t_data *gameinfo)
+// Converts a [R],[G],[B],[NULL] array of strs to an int
+int	ft_create_rgb(char **rgb, t_data *gameinfo)
 {
-	char	**rgb;
 	int		tmp;
-	int		color;
 	int		i;
+	int		color;
 	int		bit;
 
-	rgb = ft_validate_colors(line, gameinfo);
 	color = 0;
-	bit = 16; // To work with alpha channel change to 24
+	bit = 16;
 	i = -1;
 	while (rgb[++i] && bit >= 0)
 	{
@@ -147,8 +149,42 @@ int	ft_get_colors(char *line, t_data *gameinfo)
 		color += (tmp & 0xFF) << bit;
 		bit -= 8;
 	}
+	return (color);
+}
+
+// Validates and extracts color values from R,G,B to int
+int	ft_get_colors(char *line, t_data *gameinfo, int surface)
+{
+	char	**rgb;
+	int		color;
+
+	if (surface != -1) // Checks if the value has already been set or not, if yes we have duplicated
+	{
+		ft_error(ERR_TEXTDUP, gameinfo, EXIT_FAILURE);
+	}
+	gameinfo->textures.nbr_txt++;
+	rgb = ft_validate_colors(line, gameinfo);
+	color = ft_create_rgb(rgb, gameinfo);
 	ft_db_free(rgb);
 	return (color);
+}
+// Check if all components are digits, that will ensure that values are positive
+int	ft_isallnumeric(char *rgb)
+{
+	int	j;
+	j = -1;
+	if (ft_strlen(rgb) == 0)
+	{
+		return (0);
+	}
+	while (rgb[++j])
+	{
+		if (!ft_isdigit(rgb[j]))
+		{
+			return (0);
+		}
+	}
+	return (1);
 }
 
 // Validates the color line, and color values
@@ -157,7 +193,6 @@ char	**ft_validate_colors(char *line, t_data *gameinfo)
 	char	**rgb;
 	char	*tmp;
 	int		i;
-	int		j;
 
 	rgb = ft_split(line, ',');
 	i = -1;
@@ -166,37 +201,47 @@ char	**ft_validate_colors(char *line, t_data *gameinfo)
 		tmp = ft_strtrim(rgb[i], "FC \n\t"); // Cleans color value
 		free(rgb[i]);
 		rgb[i] = tmp;
-		j = -1;
-		while (tmp[++j]) // Check if all components are digits, that will ensure that values are positive
+		if (!ft_isallnumeric(rgb[i]))
 		{
-			if (!ft_isdigit(tmp[j]) || i > 2) // Check that color value only has 3 components
-			{
-				ft_db_free(rgb);
-				ft_error(ERR_TEXTINFO, gameinfo, EXIT_FAILURE); // TODO: Change error msg
-			}
+			ft_db_free(rgb);
+			printf("validate color 1\n");
+			ft_error(ERR_TEXTINFO, gameinfo, EXIT_FAILURE); // TODO: Change error msg
 		}
+	}
+	if (i != 3)
+	{
+		ft_db_free(rgb);
+		printf("validate color 2\n");
+		ft_error(ERR_TEXTINFO, gameinfo, EXIT_FAILURE); // TODO: Change error msg
 	}
 	return (rgb);
 }
 
-char	*ft_extract_texture(char *line, t_data *gameinfo)
+char	*ft_extract_texture(char *line, t_data *gameinfo, t_wall *wall)
 {
 	char	*path;
 	char	**splitted;
 	int		i;
 
+	if (wall->path) // If texture have already been set before, then we have a duplicate
+	{
+		printf("line 194\n"); // REMOVE
+		ft_error(ERR_TEXTDUP, gameinfo, EXIT_FAILURE);
+	}
+	gameinfo->textures.nbr_txt++;
 	splitted = ft_split(line, ' ');
 	i = 0;
 	while (splitted[i])
 	{
 		i++;
 	}
-	if (i != 2)
+	if (i != 2) // Texture strs have to be identifier + path to texture
 	{
-		printf("line 199\n");
+		ft_db_free(splitted);
+		printf("line 206\n"); // REMOVE
 		ft_error(ERR_TEXTINFO, gameinfo, EXIT_FAILURE);
 	}
-	path = ft_strdup(splitted[1]);
+	path = ft_strtrim(splitted[1], "\n\t");
 	ft_db_free(splitted);
 	return (path);
 }

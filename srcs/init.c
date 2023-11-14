@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/14 11:19:39 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:29:15 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 void	ft_start(t_data *gameinfo)
 {
-	ft_read_file(gameinfo->file_path, gameinfo);
-	// gameinfo->map = ft_read_map(gameinfo->map_file, gameinfo->map);
-	gameinfo->mlx = mlx_init();
+/* 	gameinfo->mlx = mlx_init();
 	gameinfo->mlx_window = mlx_new_window(gameinfo->mlx, W_WIDTH, W_HEIGHT, "cub3d");
-	ft_get_player_position(gameinfo);
-	ft_raycast(gameinfo);
+	ft_get_player_position(gameinfo); */
+	ft_read_file(gameinfo->file_path, gameinfo);
+	ft_map_size(gameinfo);
+	// ft_raycast(gameinfo);
 }
 
 void	ft_init(t_data *gameinfo)
@@ -58,5 +58,4 @@ void	ft_init(t_data *gameinfo)
 	gameinfo->textures.walls = ft_calloc(4, sizeof(*gameinfo->textures.walls));
 	gameinfo->textures.nbr_txt = 0;
 	ft_start(gameinfo);
-	ft_map_size(gameinfo);
 }
