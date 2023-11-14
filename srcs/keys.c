@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   keys->c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttavares <ttavares@student->42porto->com>    +#+  +:+       +#+        */
+/*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 15:14:44 by ttavares          #+#    #+#             */
 /*   Updated: 2023/10/30 16:59:45 by ttavares         ###   ########->fr       */
@@ -17,72 +17,68 @@
 
 void	move_w(t_data *gameinfo)
 {
-	gameinfo->playerx -= gameinfo->playerdx;
-	gameinfo->playery -= gameinfo->playerdy;
-	gameinfo->player_gridx = gameinfo->playerx / MAP_WIDTH;
-	gameinfo->player_gridy = gameinfo->playery / MAP_HEIGHT;
-	/* if (gameinfo->playerx % WIDTH == 0)
-	{
-		gameinfo->player_gridx--;
-	}
-	if (gameinfo->playery % HEIGHT == 0)
-	{
-		gameinfo->player_gridy--;
-
-	} */
-	printf("Px: %d\t|\tPy: %d\n", gameinfo->playerx, gameinfo->playery);
-	printf("Gx: %d\t|\tGy: %d\n", gameinfo->player_gridx, gameinfo->player_gridy);
-	ft_check_collisions(gameinfo->map, gameinfo->player_gridx, gameinfo->player_gridy, gameinfo);
-	ft_draw_minimap(gameinfo);
-	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
-	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);
+	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx + gameinfo->inidirx * 0.2)] != '1')
+		gameinfo->playerx += gameinfo->inidirx * 0.2;
+	if(gameinfo->map[(int)(gameinfo->playery + gameinfo->inidiry * 0.2)][(int)(gameinfo->playerx)] != '1')
+		gameinfo->playery += gameinfo->inidiry * 0.2;
+	ft_raycast(gameinfo);
 }
 
 void	move_s(t_data *gameinfo)
 {
-	gameinfo->playerx += gameinfo->playerdx;
-	gameinfo->playery += gameinfo->playerdy;
-	gameinfo->player_gridx = gameinfo->playerx / MAP_WIDTH;
-	gameinfo->player_gridy = gameinfo->playery / MAP_HEIGHT;
-	/* if (gameinfo->playerx % WIDTH == 0)
-	{
-		gameinfo->player_gridx++;
-	}
-	if (gameinfo->playery % HEIGHT == 0)
-	{
-		gameinfo->player_gridy++;
-
-	} */
-	printf("Px: %d\t|\tPy: %d\n", gameinfo->playerx, gameinfo->playery);
-	printf("Gx: %d\t|\tGy: %d\n", gameinfo->player_gridx, gameinfo->player_gridy);
-	ft_check_collisions(gameinfo->map, gameinfo->playerx, gameinfo->playery, gameinfo);
-	ft_draw_minimap(gameinfo);
-	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
-	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);
+	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx - gameinfo->inidirx * 0.2)] != '1')
+		gameinfo->playerx -= gameinfo->inidirx * 0.2;
+	if(gameinfo->map[(int)(gameinfo->playery - gameinfo->inidiry * 0.2)][(int)(gameinfo->playerx)] != '1')
+		gameinfo->playery -= gameinfo->inidiry * 0.2;
+	ft_raycast(gameinfo);
 }
 
-void	move_a(t_data *gameinfo)
+void	move_left(t_data *gameinfo)
 {
-	gameinfo->player_angle -= 0.1;
-	if (gameinfo->player_angle < 0)
-		gameinfo->player_angle += PI*2;
-	gameinfo->playerdx = (int)((cos(gameinfo->player_angle) * 5));
-	gameinfo->playerdy = (int)((sin(gameinfo->player_angle) * 5));
-	ft_draw_minimap(gameinfo);
-	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
-	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);
+	double	olddirx;
+	double	oldplanex;
+
+	olddirx = gameinfo->inidirx;
+	gameinfo->inidirx = gameinfo->inidirx * cos(-0.1) - gameinfo->inidiry * sin(-0.1);
+	gameinfo->inidiry = olddirx * sin(-0.1) + gameinfo->inidiry * cos(-0.1);
+
+	oldplanex = gameinfo->planex;
+	gameinfo->planex = gameinfo->planex * cos(-0.1) - gameinfo->planey * sin(-0.1);
+	gameinfo->planey = oldplanex * sin(-0.1) + gameinfo->planey * cos(-0.1);
+	ft_raycast(gameinfo);
+}
+
+void	move_right(t_data *gameinfo)
+{
+	double	olddirx;
+	double	oldplanex;
+
+	olddirx = gameinfo->inidirx;
+	gameinfo->inidirx = gameinfo->inidirx * cos(0.1) - gameinfo->inidiry * sin(0.1);
+	gameinfo->inidiry = olddirx * sin(0.1) + gameinfo->inidiry * cos(0.1);
+
+	oldplanex = gameinfo->planex;
+	gameinfo->planex = gameinfo->planex * cos(0.1) - gameinfo->planey * sin(0.1);
+	gameinfo->planey = oldplanex * sin(0.1) + gameinfo->planey * cos(0.1);
+	ft_raycast(gameinfo);
 }
 
 void	move_d(t_data *gameinfo)
 {
-	gameinfo->player_angle += 0.1;
-	if (gameinfo->player_angle > PI*2)
-		gameinfo->player_angle -= PI*2;
-	gameinfo->playerdx = (int)((cos(gameinfo->player_angle) * 5));
-	gameinfo->playerdy = (int)((sin(gameinfo->player_angle) * 5));
-	ft_draw_minimap(gameinfo);
-	ft_draw_player(gameinfo, gameinfo->playerx, gameinfo->playery, 10197915);
-	ft_draw_player(gameinfo, gameinfo->playerx - (gameinfo->playerdx * 4), gameinfo->playery - (gameinfo->playerdy * 4), 39680);
+	if(gameinfo->map[(int)(gameinfo->playery + gameinfo->inidirx * 0.2)][(int)(gameinfo->playerx)] != '1')
+		gameinfo->playery += gameinfo->inidirx * 0.2;
+	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx - gameinfo->inidiry * 0.2)] != '1')
+		gameinfo->playerx -= gameinfo->inidiry * 0.2;
+	ft_raycast(gameinfo);
+}
+
+void	move_a(t_data *gameinfo)
+{
+	if(gameinfo->map[(int)(gameinfo->playery - gameinfo->inidirx * 0.2)][(int)(gameinfo->playerx)] != '1')
+		gameinfo->playery -= gameinfo->inidirx * 0.2;
+	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx + gameinfo->inidiry * 0.2)] != '1')
+		gameinfo->playerx += gameinfo->inidiry * 0.2;
+	ft_raycast(gameinfo);
 }
 
 void	moves(int key, t_data *gameinfo)
@@ -95,19 +91,22 @@ void	moves(int key, t_data *gameinfo)
 		move_a(gameinfo);
 	else if (key == XK_d)
 		move_d(gameinfo);
+	else if (key == XK_Right)
+		move_right(gameinfo);
+	else if (key == XK_Left)
+		move_left(gameinfo);
 }
 
-//Events for key press
 int	keys(int key, t_data *gameinfo)
 {
 	if (key == XK_Escape)
-	{
 		terminate_prog(gameinfo, EXIT_SUCCESS);
-	}
 	else
 	{
+		ft_clear(gameinfo);
 		moves(key, gameinfo);
 	}
+	ft_raycast(gameinfo);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:38 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/13 16:12:53 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:29:25 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	ft_map_size(t_data *gameinfo)
 	int	j;
 
 	i = 0;
-	while (gameinfo->map[i])
+	while(gameinfo->map[i])
 	{
 		j = 0;
-		while (gameinfo->map[i][j])
+		while(gameinfo->map[i][j])
 		{
 			j++;
-			if (j > gameinfo->map_width)
+			if(j > gameinfo->map_width)
 				gameinfo->map_width = j;
 		}
 		i++;

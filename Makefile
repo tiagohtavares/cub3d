@@ -6,7 +6,7 @@
 #    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/11/07 10:38:51 by heda-sil         ###   ########.fr        #
+#    Updated: 2023/11/14 11:21:19 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ VFLAGS+= --log-file=mem.log
 
 endif
 
-SRCS =	./srcs/main ./srcs/read_map ./srcs/init ./srcs/draw ./srcs/player_position \
-		./srcs/keys ./srcs/error ./srcs/map_check \
+SRCS =	./srcs/main ./srcs/read_map ./srcs/init ./srcs/player_position\
+		./srcs/keys ./srcs/error ./srcs/raycast ./srcs/draw ./srcs/map_check \
 		./get_next_line/get_next_line ./get_next_line/get_next_line_utils \
 		./srcs/debug
 
