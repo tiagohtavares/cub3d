@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:52:11 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/13 16:19:44 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:49:04 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int	ft_get_colors(char *line, t_data *gameinfo)
 
 	rgb = ft_validate_colors(line, gameinfo);
 	color = 0;
-	bit = 18; // To work with alpha channel change to 24
+	bit = 16; // To work with alpha channel change to 24
 	i = -1;
 	while (rgb[++i] && bit >= 0)
 	{
