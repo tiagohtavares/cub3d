@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ttavares <ttavares@student.42.fr>          +#+  +:+       +#+         #
+#    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/03 11:13:01 by ttavares          #+#    #+#              #
-#    Updated: 2022/11/22 12:25:47 by ttavares         ###   ########.fr        #
+#    Updated: 2023/11/16 11:10:51 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS	=	ft_strlen.c ft_toupper.c ft_tolower.c ft_isalpha.c ft_isdigit.c \
 			ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_itoa_unsigned.c ft_printf.c \
 			ft_putchar.c ft_puthex_lower.c ft_puthex_upper.c ft_putnbr.c \
 			ft_putnbr_unsigned.c ft_putptr.c ft_putstr.c \
+			get_next_line.c get_next_line_utils.c
 
 OBJS	=	$(SRCS:.c=.o)
 

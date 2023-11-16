@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:40:58 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/06 17:46:42 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:03:35 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "./cub3d.h"
 #include "./errors.h"
-#include "./map_check.h"
+#include "./texture_check.h"
 
 
 void	ft_map_size(t_data *gameinfo);

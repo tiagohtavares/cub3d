@@ -6,10 +6,11 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/14 12:58:40 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:50:26 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/cub3d.h"
 #include "../includes/errors.h"
 
 void	ft_error(char *msg, t_data *prog, int exit_code)

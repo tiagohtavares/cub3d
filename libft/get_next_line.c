@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:08:33 by ttavares          #+#    #+#             */
-/*   Updated: 2023/10/30 11:44:24 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:12:13 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
+#include "libft.h"
 
 /* Formats stash to remove previous recovered line, keeping
 only the necessary excess after \n for next get_next_line call */

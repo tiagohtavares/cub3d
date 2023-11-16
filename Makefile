@@ -6,12 +6,13 @@
 #    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/11/14 11:21:19 by heda-sil         ###   ########.fr        #
+#    Updated: 2023/11/16 11:18:24 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT	= ./libft/libft.a
-LIBFT_DIR = ./libft
+#LIBS
+LIBFT= ${LIBFT_DIR}/libft.a
+LIBFT_LIB= -L${LIBFT_DIR} -lft
 
 MINILIBX = ./minilibx-linux/libmlx_Linux.a
 MINILIBX_DIR = ./minilibx-linux
@@ -19,7 +20,11 @@ MINILIBX_DIR = ./minilibx-linux
 CC	= cc -Wall -Wextra -Werror
 RM	= rm -f
 
-includes = includes
+#DIRECTORIES
+SRCS_DIR= srcs
+INC= includes
+OBJ_DIR= obj
+LIBFT_DIR= libft
 
 VFLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes
 
@@ -35,16 +40,19 @@ VFLAGS+= --log-file=mem.log
 
 endif
 
-SRCS =	./srcs/main ./srcs/read_map ./srcs/init ./srcs/player_position\
-		./srcs/keys ./srcs/error ./srcs/raycast ./srcs/draw ./srcs/map_check \
-		./get_next_line/get_next_line ./get_next_line/get_next_line_utils \
-		./srcs/debug
+SRCF =	main read_map init player_position \
+		keys error raycast draw texture_check \
+		texture_check_utils \
+		debug
 
-OBJS = $(SRCS:=.o)
+SRCS= $(addprefix ${SRCS_DIR}/, $(addsuffix .c, ${SRCF}))
+OBJS= $(addprefix ${OBJ_DIR}/, $(addsuffix .o, ${SRCF}))
+SRCSB= $(addprefix ${SRCS_DIR}/, $(addsuffix .c, ${SRCBF}))
+OBJSB= $(addprefix ${OBJ_DIR}/, $(addsuffix .o, ${SRCBF}))
 
 NAME = cub3d
 
-all:	$(NAME)
+all: $(NAME)
 
 $(LIBFT):
 	make bonus -C $(LIBFT_DIR)
@@ -53,7 +61,13 @@ $(MINILIBX):
 	make -C $(MINILIBX_DIR)
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	$(CC) $(OBJS) $(MINILIBX) -lXext -lX11 -lm $(LIBFT) -o $(NAME)
+	$(CC) $(OBJS) -I./${INC} ${LIBFT_LIB} $(MINILIBX) -lXext -lX11 -lm -o $(NAME)
+
+${OBJ_DIR}/%.o: ${SRCS_DIR}/%.c | ${OBJ_DIR}
+	${CC} ${CFLAGS} -I./${INC} -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 clean:
 	$(RM) $(OBJS)

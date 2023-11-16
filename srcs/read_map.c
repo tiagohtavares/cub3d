@@ -6,10 +6,11 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:38 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/14 13:45:07 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:14:26 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/cub3d.h"
 #include "../includes/read_map.h"
 
 //Gets map size
@@ -44,9 +45,7 @@ void	ft_read_file(char *filepath, t_data *gameinfo)
 	ft_check_file_ext(filepath, gameinfo);
 	fd = open(filepath, O_RDONLY);
 	if (fd == -1)
-	{
 		ft_error(ERR_OPEN, gameinfo, EXIT_FAILURE);
-	}
 	map = NULL;
 	line = get_next_line(fd);
 	while (line)
@@ -56,9 +55,9 @@ void	ft_read_file(char *filepath, t_data *gameinfo)
 		line = get_next_line(fd);
 	}
 	if (close(fd) < -1)
-	{
 		ft_error(ERR_CLOSE, gameinfo, EXIT_FAILURE);
-	}
+	if (!map)
+		ft_error(ERR_SCENE, gameinfo, EXIT_FAILURE);
 	gameinfo->map_file = map;
 	ft_read_map(map, gameinfo);
 }
@@ -94,6 +93,8 @@ void	ft_read_map(t_list *file, t_data *gameinfo)
 		file = file->next;
 		gameinfo->map_height++;
 	}
+	if (!mid_map)
+		ft_error(ERR_SCENE, gameinfo, EXIT_FAILURE);
 	ft_get_map(gameinfo, map_start);
 }
 

@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:46:56 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/14 13:16:14 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:36:28 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #define ERR_USE "Error\nIncorrect program usage. Correct usage ./cub3d <map>.cub"
 #define ERR_OPEN "Error\nFailed to open map file"
 #define ERR_CLOSE "Error\nFailed to close map file"
+#define ERR_SCENE "Error\nInvalid scene"
 #define ERR_TYPE "Error\nIncorret file type. Map file must be a '.cub' file"
 #define ERR_NL "Error\nInvalid newline in map"
 #define ERR_CHAR "Error\nInvalid character in map"
