@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/16 10:50:26 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:48:20 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,10 @@ void	*ft_db_free(char **ptr)
 	int	i;
 
 	if (!ptr)
-	{
 		return (NULL);
-	}
 	i = -1;
 	while (ptr[++i])
-	{
 		free(ptr[i]);
-	}
 	free(ptr);
 	ptr = NULL;
 	return (ptr);
@@ -45,9 +41,7 @@ void	terminate_prog(t_data *prog, int exit_code)
 	{
 		free_wall_textures(&prog->textures, prog->mlx);
 		if (prog->mlx_window)
-		{
 			mlx_destroy_window(prog->mlx, prog->mlx_window);
-		}
 		if (prog->mlx)
 		{
 			mlx_destroy_display(prog->mlx);

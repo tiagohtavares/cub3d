@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:38 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/16 11:14:26 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/16 12:47:15 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,8 @@ void	ft_read_map(t_list *file, t_data *gameinfo)
 			map_start++;
 			continue ;
 		}
-		else if (ft_isempty_line(file->content) && mid_map) // If empty line
-		{
-			printf("read_map 82\n"); // REMOVE
+		else if (ft_isempty_line(file->content)) // If empty line
 			ft_error(ERR_NL, gameinfo, EXIT_FAILURE);
-		}
 		line++; // REMOVE
 		mid_map = 1;
 		file = file->next;
@@ -103,21 +100,17 @@ void	ft_get_map(t_data *gameinfo, int start)
 {
 	int		i;
 	t_list	*tmp;
-	char	*map;
 
 	tmp = gameinfo->map_file;
 	while (start--) // Skips the file to the starting line of the map
-	{
 		tmp = tmp->next;
-	}
 	gameinfo->map = ft_calloc(gameinfo->map_height + 1, sizeof(*gameinfo->map));
 	i = -1;
 	while (tmp)
 	{
-		map = ft_strtrim(tmp->content, "\n");
-		gameinfo->map[++i] = ft_strdup(map);
-		free(map);
+		gameinfo->map[++i] = ft_strtrim(tmp->content, "\n");
 		tmp = tmp->next;
 	}
 	ft_lstclear(&gameinfo->map_file, free);
+	ft_check_map(gameinfo->map, gameinfo->map_height, gameinfo);
 }
