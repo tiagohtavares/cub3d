@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/16 11:12:34 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:39:02 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_data
 	int			player_starty;
 	double		player_angle;
 	t_texture	textures;
+	char		**map_copy;
 }	t_data;
 
 //read_map.c

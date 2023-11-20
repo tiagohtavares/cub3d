@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:46:56 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/16 12:50:38 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:54:46 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #define ERR_NL "Error\nInvalid newline in map"
 #define ERR_CHAR "Error\nInvalid character in map"
 #define ERR_PLAYER "Error\nInvalid number of player starting postion"
+#define ERR_MAP "Error\nInvalid map formatting"
 #define ERR_WALLS "Error\nMap must be surrounded by walls"
 #define ERR_FORMAT "Error\nMap must be the last element of the scene"
 #define ERR_TEXTMISS "Error\nInvalid or missing textures or the map is not the \
