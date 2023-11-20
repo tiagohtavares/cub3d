@@ -101,10 +101,8 @@ int	keys(int key, t_data *gameinfo)
 		terminate_prog(gameinfo, EXIT_SUCCESS);
 	else
 	{
-		ft_clear(gameinfo);
 		moves(key, gameinfo);
 	}
-	ft_raycast(gameinfo);
 	return (0);
 }
 

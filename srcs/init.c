@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/13 15:41:47 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:56:17 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_start(t_data *gameinfo)
 	gameinfo->map = ft_read_map(gameinfo->map_file, gameinfo->map);
 	gameinfo->mlx = mlx_init();
 	gameinfo->mlx_window = mlx_new_window(gameinfo->mlx, W_WIDTH, W_HEIGHT, "cub3d");
+	ft_texture(gameinfo);
 	ft_get_player_position(gameinfo);
 	ft_raycast(gameinfo);
 }
@@ -46,5 +47,7 @@ void	ft_init(t_data *gameinfo)
 	gameinfo->side = 0;
 	gameinfo->lineh = 0;
 	gameinfo->color = 0;
+	gameinfo->floorcolor = C_WHITE;
+	gameinfo->ceilingcolor = C_BLUE;
 	ft_start(gameinfo);
 }

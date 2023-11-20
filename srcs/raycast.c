@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:10:54 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/13 15:40:19 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:05:59 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	ft_raycast(t_data *gameinfo)
 {
-	double	start;
-	double	end;
+	int	start;
+	int	end;
 	int	x;
-
+	int	buffer[W_HEIGHT][W_WIDTH];
+	gameinfo->color = C_RED;
 	x = 0;
 	while(x < W_WIDTH)
 	{
@@ -91,11 +92,60 @@ void	ft_raycast(t_data *gameinfo)
 		end = gameinfo->lineh / 2 + W_HEIGHT /2;
 		if(end >= W_HEIGHT)
 			end = W_HEIGHT - 1;
-		if (gameinfo->side == 1)
-			gameinfo->color = C_RED;
+		// if (gameinfo->side == 1)
+		// 	gameinfo->color = C_RED;
+		// if (gameinfo->side == 0)
+		// 	gameinfo->color = C_BLUE;
+
 		if (gameinfo->side == 0)
-			gameinfo->color = C_BLUE;
-		ft_draw_vertical(gameinfo, x, (int)start, (int)end, gameinfo->color);
+		{
+			gameinfo->wallx = gameinfo->playery + gameinfo->perpwalldistance * gameinfo->raydiry;
+			gameinfo->wallx -= gameinfo->mapy;
+		}
+		else
+		{
+			gameinfo->wallx = gameinfo->playerx + gameinfo->perpwalldistance * gameinfo->raydirx;
+			gameinfo->wallx -= gameinfo->mapx;
+		}
+
+		gameinfo->texX = (int)(gameinfo->wallx * (double)TEXTUREW);
+		gameinfo->texture = (int *)malloc(TEXTUREH * TEXTUREW * sizeof(int));
+		if (gameinfo->side == 1)
+		{
+			if (gameinfo->raydiry < 0)
+				gameinfo->texture = gameinfo->textureN;//flat red texture with black cross
+			else
+				gameinfo->texture = gameinfo->textureS;//xor green
+		}
+		else
+		{
+			if (gameinfo->raydirx < 0)
+				gameinfo->texture = gameinfo->textureW;//sloped yellow gradient
+			else
+				gameinfo->texture = gameinfo->textureE;//red bricks
+		}
+
+		double	step;
+
+		step = 1.0 * TEXTUREH / gameinfo->lineh;
+
+		double texPos;
+
+		texPos = (start - W_HEIGHT / 2 + gameinfo->lineh / 2) * step;
+
+		for(int y = start; y < end; y++)
+		{
+			//printf("Buffer[%d][%d] = %d\n",y,x, buffer[y][x]);
+			int texY = (int)texPos & (TEXTUREH - 1);
+			texPos += step;
+			int	color = gameinfo->texture[TEXTUREH * texY + gameinfo->texX];
+			//printf("Start:%d, End:%d, \n", start, end);
+			//printf("Y:%d, X:%d, Color:%d\n", y, x ,color);
+			buffer[y][x] = color;
+			//(void)buffer;
+		}
+		//ft_draw_vertical(gameinfo, x, (int)start, (int)end, gameinfo->color);
+		ft_draw_buffer(gameinfo, x,start, end, buffer);
 		x++;
 	}
 }

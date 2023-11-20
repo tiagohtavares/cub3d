@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/13 16:05:35 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:54:01 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 #define WIDTH 64
 #define HEIGHT 64
 
+#define TEXTUREW 64
+#define TEXTUREH 64
+
 #define C_RED 16711680
 #define C_BLUE 255
 #define C_GREEN 65280
@@ -33,10 +36,29 @@
 
 typedef struct s_data
 {
+	int		stepx;
+	int		stepy;
+	int		hit;
+	int		side;
+	int		mapx;
+	int		mapy;
+	int		color;
+	int		floorcolor;
+	int		ceilingcolor;
+	int		*texture;
+	int		textureN[TEXTUREH * TEXTUREW];
+	int		textureE[TEXTUREH * TEXTUREW];
+	int		textureS[TEXTUREH * TEXTUREW];
+	int		textureW[TEXTUREH * TEXTUREW];
+	int		texX;
 	char	**map;
 	char	*map_file;
 	void	*mlx;
 	void	*mlx_window;
+	void	*img_n;
+	void	*img_s;
+	void	*img_e;
+	void	*img_w;
 	double	playerx;
 	double	playery;
 	double	inidirx;
@@ -51,14 +73,8 @@ typedef struct s_data
 	double	deltax;
 	double	deltay;
 	double	perpwalldistance;
-	int		stepx;
-	int		stepy;
-	int		hit;
-	int		side;
-	int		mapx;
-	int		mapy;
-	int		color;
 	double	lineh;
+	double	wallx;
 }	t_data;
 
 //read_map.c
@@ -80,5 +96,10 @@ void	ft_raycast(t_data *gameinfo);
 
 //draw.c
 void	ft_draw_vertical(t_data *gameinfo, int x, int start, int end, int color);
+void	ft_draw_buffer(t_data *gameinfo, int x,int start, int end,  int buffer[W_HEIGHT][W_WIDTH]);
 void	ft_clear(t_data *gameinfo);
+
+//texture.c
+void	ft_texture(t_data *gameinfo);
+
 #endif
