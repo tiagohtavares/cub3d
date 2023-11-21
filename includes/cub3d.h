@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/20 18:54:01 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:44:22 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,21 @@ typedef struct s_data
 	int		floorcolor;
 	int		ceilingcolor;
 	int		*texture;
-	int		textureN[TEXTUREH * TEXTUREW];
-	int		textureE[TEXTUREH * TEXTUREW];
-	int		textureS[TEXTUREH * TEXTUREW];
-	int		textureW[TEXTUREH * TEXTUREW];
+	int		*texture_test;
 	int		texX;
+	int		imagex;
+	int		imagey;
+	int		main_w;
+	int		main_h;
+	int		bpp;
+	int		line_length;
+	int		endian;
 	char	**map;
 	char	*map_file;
+	char	*main_addr;
 	void	*mlx;
 	void	*mlx_window;
+	void	*mlx_main;
 	void	*img_n;
 	void	*img_s;
 	void	*img_e;
@@ -94,12 +100,8 @@ void	ft_get_player_position(t_data *gameinfo);
 //raycast.c
 void	ft_raycast(t_data *gameinfo);
 
-//draw.c
-void	ft_draw_vertical(t_data *gameinfo, int x, int start, int end, int color);
-void	ft_draw_buffer(t_data *gameinfo, int x,int start, int end,  int buffer[W_HEIGHT][W_WIDTH]);
-void	ft_clear(t_data *gameinfo);
-
 //texture.c
 void	ft_texture(t_data *gameinfo);
+void	ft_set_pixel(t_data *gameinfo, int x, int y, int color);
 
 #endif

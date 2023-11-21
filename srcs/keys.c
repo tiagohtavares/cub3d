@@ -100,13 +100,10 @@ int	keys(int key, t_data *gameinfo)
 	if (key == XK_Escape)
 		terminate_prog(gameinfo, EXIT_SUCCESS);
 	else
-	{
 		moves(key, gameinfo);
-	}
 	return (0);
 }
 
-//Exit clicking on x
 int	x_button(t_data *gameinfo)
 {
 	terminate_prog(gameinfo, EXIT_SUCCESS);
