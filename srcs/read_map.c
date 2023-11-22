@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:38 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/16 12:47:15 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:21:12 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,35 +62,64 @@ void	ft_read_file(char *filepath, t_data *gameinfo)
 	ft_read_map(map, gameinfo);
 }
 
-// Loops the list and finds the line where map start/also saves the texture info
+/* // Loops the list and finds the line where map start/also saves the texture info
 // BUG?: If file has any newline after map it considers as error of new line
 void	ft_read_map(t_list *file, t_data *gameinfo)
 {
 	int		map_start;
 	int		mid_map;
-	int		line; // REMOVE
+	int		map_end;
 
-	line = 1;
 	map_start = 0;
 	mid_map = 0;
+	map_end = 0;
 	while (file)
 	{
-		printf("Line: %d\n", line); // REMOVE
 		if (!mid_map && ft_skip_line(file->content, gameinfo))
 		{
-			line++; // REMOVE
 			file = file->next;
 			map_start++;
 			continue ;
 		}
-		else if (ft_isempty_line(file->content)) // If empty line
-			ft_error(ERR_NL, gameinfo, EXIT_FAILURE);
-		line++; // REMOVE
 		mid_map = 1;
+		if (ft_isempty_line(file->content)) // If empty line
+			map_end = map_start + gameinfo->map_height;
+		else
+			gameinfo->map_height++;
+		if (!ft_isempty_line(file->content) && map_end)
+			ft_error(ERR_NL, gameinfo, EXIT_FAILURE);
 		file = file->next;
-		gameinfo->map_height++;
 	}
 	if (!mid_map)
+		ft_error(ERR_SCENE, gameinfo, EXIT_FAILURE);
+	ft_get_map(gameinfo, map_start);
+} */
+
+// Loops the list and finds the line where map start/also saves the texture info
+// BUG?: If file has any newline after map it considers as error of new line
+void	ft_read_map(t_list *file, t_data *gameinfo)
+{
+	int		map_start;
+	int		map_end;
+
+	map_start = 0;
+	map_end = 0;
+	while (file && ft_skip_line(file->content, gameinfo))
+	{
+		file = file->next;
+		map_start++;
+	}
+	while (file)
+	{
+		if (!ft_isempty_line(file->content))
+			gameinfo->map_height++;
+		else
+			map_end = map_start + gameinfo->map_height;
+		file = file->next;
+		if (file && !ft_isempty_line(file->content) && map_end)
+			ft_error(ERR_NL, gameinfo, EXIT_FAILURE);
+	}
+	if (!map_end && !gameinfo->map_height)
 		ft_error(ERR_SCENE, gameinfo, EXIT_FAILURE);
 	ft_get_map(gameinfo, map_start);
 }
@@ -106,11 +135,12 @@ void	ft_get_map(t_data *gameinfo, int start)
 		tmp = tmp->next;
 	gameinfo->map = ft_calloc(gameinfo->map_height + 1, sizeof(*gameinfo->map));
 	i = -1;
-	while (tmp)
+	while (++i < gameinfo->map_height)
 	{
-		gameinfo->map[++i] = ft_strtrim(tmp->content, "\n");
+		gameinfo->map[i] = ft_strtrim(tmp->content, "\n");
 		tmp = tmp->next;
 	}
+	ft_map_print(gameinfo->map);
 	ft_lstclear(&gameinfo->map_file, free);
 	ft_check_map(gameinfo->map, gameinfo->map_height, gameinfo);
 }

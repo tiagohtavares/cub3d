@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:54:00 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/16 11:53:30 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:00:37 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_skip_line(char *line, t_data *gameinfo)
 {
 	if (ft_isempty_line(line)) // Skips empty lines
 		return (1);
-	else if (gameinfo->textures.nbr_txt < 6 && ft_check_textures(line)) // Skips texture lines
+	else if (ft_check_textures(line)) // Skips texture lines
 	{
 		ft_get_textures(line, &gameinfo->textures, gameinfo);
 		return (1);
