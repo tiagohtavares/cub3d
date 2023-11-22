@@ -6,12 +6,12 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/21 15:44:22 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/22 00:54:43 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D
-#define CUB3D
+#ifndef CUB3D_H
+#define CUB3D_H
 
 #include "../libft/libft.h"
 #include "get_next_line.h"
@@ -34,6 +34,19 @@
 #define C_WHITE 16777215
 #define C_BLACK 0
 
+typedef struct s_image
+{
+	void	*image;
+	char	*addr;
+	int		x;
+	int		y;
+	int		bpp;
+	int		line_length;
+	int		endian;
+	int		*texture;
+}	t_image;
+
+
 typedef struct s_data
 {
 	int		stepx;
@@ -55,6 +68,7 @@ typedef struct s_data
 	int		bpp;
 	int		line_length;
 	int		endian;
+	char	*path[4];
 	char	**map;
 	char	*map_file;
 	char	*main_addr;
@@ -81,6 +95,7 @@ typedef struct s_data
 	double	perpwalldistance;
 	double	lineh;
 	double	wallx;
+	t_image		image[4];
 }	t_data;
 
 //read_map.c

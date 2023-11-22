@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:10:54 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/21 15:46:31 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/22 01:30:39 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,23 +103,51 @@ void	ft_raycast(t_data *gameinfo)
 			gameinfo->wallx -= gameinfo->mapx;
 		}
 
-		// if (gameinfo->side == 1)
-		// {
-		// 	if (gameinfo->raydiry < 0)
-		// 		gameinfo->texture = gameinfo->textureN;//flat red texture with black cross
-		// 	else
-		// 		gameinfo->texture = gameinfo->textureS;//xor green
-		// }
-		// else
-		// {
-		// 	if (gameinfo->raydirx < 0)
-		// 		gameinfo->texture = gameinfo->textureW;//sloped yellow gradient
-		// 	else
-		// 		gameinfo->texture = gameinfo->textureE;//red bricks
-		// }
+
+
+
+
+
+
+
+
+		if (gameinfo->side == 1)
+		{
+			if (gameinfo->raydiry < 0)
+			{
+				//gameinfo->texture = gameinfo->textureN;
+				gameinfo->texture = gameinfo->image[0].texture;
+				gameinfo->imagex = gameinfo->image[0].x;
+				gameinfo->imagey = gameinfo->image[0].y;
+				printf("0|| img.x: %d || img.y: %d \n", gameinfo->image[0].x, gameinfo->image[0].y);
+			}
+			else
+			{
+				gameinfo->texture = gameinfo->image[2].texture;
+				gameinfo->imagex = gameinfo->image[2].x;
+				gameinfo->imagey = gameinfo->image[2].y;
+				printf("2|| img.x: %d || img.y: %d \n", gameinfo->image[2].x, gameinfo->image[2].y);
+			}
+		}
+		else
+		{
+			if (gameinfo->raydirx < 0)
+			{
+				gameinfo->texture = gameinfo->image[3].texture;
+				gameinfo->imagex = gameinfo->image[3].x;
+				gameinfo->imagey = gameinfo->image[3].y;
+				printf("3|| img.x: %d || img.y: %d \n", gameinfo->image[3].x, gameinfo->image[3].y);
+			}
+			else
+			{
+				gameinfo->texture = gameinfo->image[1].texture;
+				gameinfo->imagex = gameinfo->image[1].x;
+				gameinfo->imagey = gameinfo->image[1].y;
+				printf("1|| img.x: %d || img.y: %d \n", gameinfo->image[1].x, gameinfo->image[1].y);
+			}
+		}
 
 		gameinfo->texX = (int)(gameinfo->wallx * (double)gameinfo->imagex);
-		gameinfo->texture = (int *)malloc(gameinfo->imagey * gameinfo->imagex * sizeof(int));
 
 
 		double	step;
@@ -134,7 +162,7 @@ void	ft_raycast(t_data *gameinfo)
 		{
 			int texY = (int)texPos & (gameinfo->imagey - 1);
 			texPos += step;
-			int	color = gameinfo->texture_test[gameinfo->imagey * texY + gameinfo->texX];
+			int	color = gameinfo->texture[gameinfo->imagey * texY + gameinfo->texX];
 			ft_set_pixel(gameinfo, x, y, color);
 		}
 		int	f;
