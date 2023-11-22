@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:39:15 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/22 01:32:02 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/22 01:45:03 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	ft_texture(t_data *gameinfo)
 	gameinfo->path[1] = "assets/imgs/brown_64.xpm"; // E
 	gameinfo->path[2] = "assets/imgs/brick_64.xpm"; // S
 	gameinfo->path[3] = "assets/imgs/gray_64.xpm"; // W
+	gameinfo->floorcolor = C_WHITE;
+	gameinfo->ceilingcolor = C_BLUE;
 	ft_load_texture(gameinfo);
 }
 

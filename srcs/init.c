@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/21 15:41:53 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/22 01:44:59 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,5 @@ void	ft_init(t_data *gameinfo)
 	gameinfo->side = 0;
 	gameinfo->lineh = 0;
 	gameinfo->color = 0;
-	gameinfo->floorcolor = C_WHITE;
-	gameinfo->ceilingcolor = C_BLUE;
 	ft_start(gameinfo);
 }

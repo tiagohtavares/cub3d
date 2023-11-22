@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:10:54 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/22 01:30:39 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/22 01:45:36 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,14 +119,14 @@ void	ft_raycast(t_data *gameinfo)
 				gameinfo->texture = gameinfo->image[0].texture;
 				gameinfo->imagex = gameinfo->image[0].x;
 				gameinfo->imagey = gameinfo->image[0].y;
-				printf("0|| img.x: %d || img.y: %d \n", gameinfo->image[0].x, gameinfo->image[0].y);
+				//printf("0|| img.x: %d || img.y: %d \n", gameinfo->image[0].x, gameinfo->image[0].y);
 			}
 			else
 			{
 				gameinfo->texture = gameinfo->image[2].texture;
 				gameinfo->imagex = gameinfo->image[2].x;
 				gameinfo->imagey = gameinfo->image[2].y;
-				printf("2|| img.x: %d || img.y: %d \n", gameinfo->image[2].x, gameinfo->image[2].y);
+				//printf("2|| img.x: %d || img.y: %d \n", gameinfo->image[2].x, gameinfo->image[2].y);
 			}
 		}
 		else
@@ -136,14 +136,14 @@ void	ft_raycast(t_data *gameinfo)
 				gameinfo->texture = gameinfo->image[3].texture;
 				gameinfo->imagex = gameinfo->image[3].x;
 				gameinfo->imagey = gameinfo->image[3].y;
-				printf("3|| img.x: %d || img.y: %d \n", gameinfo->image[3].x, gameinfo->image[3].y);
+				//printf("3|| img.x: %d || img.y: %d \n", gameinfo->image[3].x, gameinfo->image[3].y);
 			}
 			else
 			{
 				gameinfo->texture = gameinfo->image[1].texture;
 				gameinfo->imagex = gameinfo->image[1].x;
 				gameinfo->imagey = gameinfo->image[1].y;
-				printf("1|| img.x: %d || img.y: %d \n", gameinfo->image[1].x, gameinfo->image[1].y);
+				//printf("1|| img.x: %d || img.y: %d \n", gameinfo->image[1].x, gameinfo->image[1].y);
 			}
 		}
 
