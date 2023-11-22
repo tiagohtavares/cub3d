@@ -15,18 +15,18 @@
 
 void	move_w(t_data *gameinfo)
 {
-	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx + gameinfo->inidirx * 0.2)] != '1')
+	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx + gameinfo->inidirx * 0.3)] != '1')
 		gameinfo->playerx += gameinfo->inidirx * 0.2;
-	if(gameinfo->map[(int)(gameinfo->playery + gameinfo->inidiry * 0.2)][(int)(gameinfo->playerx)] != '1')
+	if(gameinfo->map[(int)(gameinfo->playery + gameinfo->inidiry * 0.3)][(int)(gameinfo->playerx)] != '1')
 		gameinfo->playery += gameinfo->inidiry * 0.2;
 	ft_raycast(gameinfo);
 }
 
 void	move_s(t_data *gameinfo)
 {
-	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx - gameinfo->inidirx * 0.2)] != '1')
+	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx - gameinfo->inidirx * 0.3)] != '1')
 		gameinfo->playerx -= gameinfo->inidirx * 0.2;
-	if(gameinfo->map[(int)(gameinfo->playery - gameinfo->inidiry * 0.2)][(int)(gameinfo->playerx)] != '1')
+	if(gameinfo->map[(int)(gameinfo->playery - gameinfo->inidiry * 0.3)][(int)(gameinfo->playerx)] != '1')
 		gameinfo->playery -= gameinfo->inidiry * 0.2;
 	ft_raycast(gameinfo);
 }
@@ -63,18 +63,18 @@ void	move_right(t_data *gameinfo)
 
 void	move_d(t_data *gameinfo)
 {
-	if(gameinfo->map[(int)(gameinfo->playery + gameinfo->inidirx * 0.2)][(int)(gameinfo->playerx)] != '1')
+	if(gameinfo->map[(int)(gameinfo->playery + gameinfo->inidirx * 0.3)][(int)(gameinfo->playerx)] != '1')
 		gameinfo->playery += gameinfo->inidirx * 0.2;
-	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx - gameinfo->inidiry * 0.2)] != '1')
+	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx - gameinfo->inidiry * 0.3)] != '1')
 		gameinfo->playerx -= gameinfo->inidiry * 0.2;
 	ft_raycast(gameinfo);
 }
 
 void	move_a(t_data *gameinfo)
 {
-	if(gameinfo->map[(int)(gameinfo->playery - gameinfo->inidirx * 0.2)][(int)(gameinfo->playerx)] != '1')
+	if(gameinfo->map[(int)(gameinfo->playery - gameinfo->inidirx * 0.3)][(int)(gameinfo->playerx)] != '1')
 		gameinfo->playery -= gameinfo->inidirx * 0.2;
-	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx + gameinfo->inidiry * 0.2)] != '1')
+	if(gameinfo->map[(int)(gameinfo->playery)][(int)(gameinfo->playerx + gameinfo->inidiry * 0.3)] != '1')
 		gameinfo->playerx += gameinfo->inidiry * 0.2;
 	ft_raycast(gameinfo);
 }

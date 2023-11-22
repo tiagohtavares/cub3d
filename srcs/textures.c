@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:39:15 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/22 01:45:03 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:47:05 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	ft_load_texture(t_data *gameinfo)
 			gameinfo->image[i].texture[j] = (pixel[2] << 16) | (pixel[1] << 8) | (pixel[0] << 0);
 			j++;
 		}
-		printf("i: %d || img.x: %d || img.y: %d \n", i, gameinfo->image[i].x, gameinfo->image[i].y);
 		i++;
 	}
 }

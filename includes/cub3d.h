@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/22 00:54:43 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:32:11 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 #include "../minilibx-linux/mlx_int.h"
 #include <math.h>
 
-#define W_WIDTH 1080
-#define W_HEIGHT 720
+#define W_WIDTH 1800
+#define W_HEIGHT 900
 
 #define WIDTH 64
 #define HEIGHT 64

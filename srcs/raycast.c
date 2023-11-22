@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:10:54 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/22 01:45:36 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:23:43 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	ft_raycast(t_data *gameinfo)
 			gameinfo->deltay = fabs(1 / gameinfo->raydiry);
 		gameinfo->hit = 0;
 		gameinfo->side = 0;
+
+
 		if(gameinfo->raydirx < 0)
 		{
 			gameinfo->stepx = -1;
@@ -70,10 +72,10 @@ void	ft_raycast(t_data *gameinfo)
 				gameinfo->mapy += gameinfo->stepy;
 				gameinfo->side = 1;
 			}
-			if(gameinfo->mapy < 0)
-				gameinfo->mapy = 0;
-			if(gameinfo->mapx < 0)
-				gameinfo->mapx = 0;
+			// if(gameinfo->mapy < 0)
+			// 	gameinfo->mapy = 0;
+			// if(gameinfo->mapx < 0)
+			// 	gameinfo->mapx = 0;
 			if(gameinfo->map[gameinfo->mapy][gameinfo->mapx] == '1')
 				gameinfo->hit = 1;
 		}
@@ -102,15 +104,6 @@ void	ft_raycast(t_data *gameinfo)
 			gameinfo->wallx = gameinfo->playerx + gameinfo->perpwalldistance * gameinfo->raydirx;
 			gameinfo->wallx -= gameinfo->mapx;
 		}
-
-
-
-
-
-
-
-
-
 		if (gameinfo->side == 1)
 		{
 			if (gameinfo->raydiry < 0)
@@ -119,14 +112,12 @@ void	ft_raycast(t_data *gameinfo)
 				gameinfo->texture = gameinfo->image[0].texture;
 				gameinfo->imagex = gameinfo->image[0].x;
 				gameinfo->imagey = gameinfo->image[0].y;
-				//printf("0|| img.x: %d || img.y: %d \n", gameinfo->image[0].x, gameinfo->image[0].y);
 			}
 			else
 			{
 				gameinfo->texture = gameinfo->image[2].texture;
 				gameinfo->imagex = gameinfo->image[2].x;
 				gameinfo->imagey = gameinfo->image[2].y;
-				//printf("2|| img.x: %d || img.y: %d \n", gameinfo->image[2].x, gameinfo->image[2].y);
 			}
 		}
 		else
@@ -136,14 +127,12 @@ void	ft_raycast(t_data *gameinfo)
 				gameinfo->texture = gameinfo->image[3].texture;
 				gameinfo->imagex = gameinfo->image[3].x;
 				gameinfo->imagey = gameinfo->image[3].y;
-				//printf("3|| img.x: %d || img.y: %d \n", gameinfo->image[3].x, gameinfo->image[3].y);
 			}
 			else
 			{
 				gameinfo->texture = gameinfo->image[1].texture;
 				gameinfo->imagex = gameinfo->image[1].x;
 				gameinfo->imagey = gameinfo->image[1].y;
-				//printf("1|| img.x: %d || img.y: %d \n", gameinfo->image[1].x, gameinfo->image[1].y);
 			}
 		}
 
