@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:48:59 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/22 17:56:34 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:43:09 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,41 @@
 #include "../includes/debug.h"
 
 // Checks if all elements of line is belongs to set of chars
-int	ft_valid_chars(char *line, char *set)
+int	ft_valid_chars(char **map, char *set)
 {
 	int i;
+	int	j;
 
 	i = -1;
-	while (line[++i])
+	while (map[++i])
 	{
-		if (!ft_strchr(set, line[i]))
-			return (0);
+		j = -1;
+		while (map[i][++j])
+			if (!ft_strchr(set, map[i][i]))
+				return (0);
 	}
 	return (1);
+}
+
+char	**ft_copy_map(char **map, int height)
+{
+	char	**map_copy;
+	int		top_size;
+	int		bottom_size;
+	int		i;
+
+	map_copy = NULL;
+	top_size = ft_strlen(map[0]);
+	bottom_size = ft_strlen(map[height - 1]);
+	map_copy = ft_calloc(height + 3, sizeof(*map_copy));
+	map_copy[0] = ft_calloc(top_size + 2, sizeof(*map_copy[0]));
+	ft_memset(map_copy[0], '#', top_size + 1); // Adds first line of '#' to dummy map
+	i = -1;
+	while (map[++i])
+		map_copy[i + 1] = ft_strjoin(map[i], "#"); // Adds '#' at the end of line for dummy map
+	map_copy[height + 1] = ft_calloc(bottom_size + 2, sizeof(char));
+	ft_memset(map_copy[height + 1], '#', bottom_size + 1); // Adds last line of '#' to dummy map
+	return (map_copy);
 }
 
 /* // Cheks first and last map line
@@ -137,28 +161,10 @@ void	ft_check_player(t_data *gameinfo, char **map)
 // Main func to check if map is good, surrounded by walls, only one player, only allowed chars etc
 void	ft_check_map(char **map, int height, t_data *gameinfo)
 {
-	int		i;
-	int		top_size;
-	int		bottom_size;
-
-	top_size = ft_strlen(map[0]);
-	bottom_size = ft_strlen(map[height - 1]);
-	gameinfo->map_copy = ft_calloc(height + 3, sizeof(*gameinfo->map_copy));
-	gameinfo->map_copy[0] = ft_calloc(top_size + 2, sizeof(char));
-	ft_memset(gameinfo->map_copy[0], '#', top_size + 1); // Adds first line of '#' to dummy map
-	i = -1;
-	while (map[++i])
-	{
-		if (!ft_valid_chars(map[i], " 01NSWE"))
-		{
-			gameinfo->map_copy = ft_db_free(gameinfo->map_copy);
-			ft_error(ERR_CHAR, gameinfo, EXIT_FAILURE);
-		}
-		gameinfo->map_copy[i + 1] = ft_strjoin(map[i], "#"); // Adds '#' at the end of line for dummy map
-	}
-	gameinfo->map_copy[height + 1] = ft_calloc(bottom_size + 2, sizeof(char));
-	ft_memset(gameinfo->map_copy[height + 1], '#', bottom_size + 1); // Adds last line of '#' to dummy map
-	flood_fill(ft_set_allowed_chars(gameinfo->map[0][0]), 0 , 0, gameinfo); // TODO: Test better but it should check all the map
+	if (!ft_valid_chars(map, " 01NSWE"))
+		ft_error(ERR_CHAR, gameinfo, EXIT_FAILURE);
+	gameinfo->map_copy = ft_copy_map(map, height);
+	flood_fill(ft_set_allowed_chars(gameinfo->map[0][0]), 0 , 0, gameinfo); // TODO: Test better but it should check all the map - Fails if theres space inside the walls
 	gameinfo->map_copy = ft_db_free(gameinfo->map_copy);
 	ft_check_player(gameinfo, gameinfo->map); // checks nbr of players
 }
