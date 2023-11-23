@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:48:59 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/22 18:43:09 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:09:58 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void	ft_check_map(char **map, int height, t_data *gameinfo)
 	if (!ft_valid_chars(map, " 01NSWE"))
 		ft_error(ERR_CHAR, gameinfo, EXIT_FAILURE);
 	gameinfo->map_copy = ft_copy_map(map, height);
-	flood_fill(ft_set_allowed_chars(gameinfo->map[0][0]), 0 , 0, gameinfo); // TODO: Test better but it should check all the map - Fails if theres space inside the walls
+	flood_fill(ft_set_allowed_chars(gameinfo->map_copy[0][0]), 0 , 0, gameinfo); // TODO: Test better but it should check all the map - Fails if theres space inside the walls
 	gameinfo->map_copy = ft_db_free(gameinfo->map_copy);
 	ft_check_player(gameinfo, gameinfo->map); // checks nbr of players
 }
