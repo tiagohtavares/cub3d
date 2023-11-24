@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:01:06 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/24 14:38:07 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:36:16 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,5 @@ void	ft_textures_print(t_texture texture)
 	ft_printf("SO: %s\n", texture.wall[S].path);
 	ft_printf("EA: %s\n", texture.wall[E].path);
 	ft_printf("WE: %s\n", texture.wall[W].path);
-	ft_printf("F: %X\n", texture.floor);
-	ft_printf("C: %X\n", texture.ceiling);
 	ft_printf("----------END----------\n\n");
 }

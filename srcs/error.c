@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/24 16:11:05 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:27:50 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,21 @@ void	*ft_db_free(char **ptr)
 	return (ptr);
 }
 
-void	ft_terminate_extra(t_data *prog)
+void	ft_clean_walls(t_data *prog)
 {
 	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
-		mlx_destroy_image(prog->mlx, prog->image[i].image);
+		if (prog->image[i].image)
+			mlx_destroy_image(prog->mlx, prog->image[i].image);
 		free(prog->image[i].texture);
 		i++;
+	}
+	if (prog->textures.wall)
+	{
+		ft_free_wall(&prog->textures);
 	}
 }
 
@@ -52,8 +57,7 @@ void	terminate_prog(t_data *prog, int exit_code)
 {
 	if (prog)
 	{
-		free_wall_textures(&prog->textures, prog->mlx);
-		// ft_terminate_extra(prog);
+		ft_clean_walls(prog);
 		if (prog->mlx_main)
 		{
 			mlx_destroy_image(prog->mlx, prog->mlx_main);
@@ -73,7 +77,7 @@ void	terminate_prog(t_data *prog, int exit_code)
 }
 
 // Frees the walls and destroys the img
-void	free_wall_textures(t_texture *texture, void *mlx)
+void	ft_free_wall(t_texture *texture)
 {
 	int	i;
 
@@ -82,11 +86,6 @@ void	free_wall_textures(t_texture *texture, void *mlx)
 	{
 		free(texture->wall[i].path);
 		texture->wall[i].path = NULL;
-		if (texture->wall[i].img)
-		{
-			mlx_destroy_image(mlx, texture->wall[i].img);
-			texture->wall[i].img = NULL;
-		}
 	}
 	free(texture->wall);
 	texture->wall = NULL;
