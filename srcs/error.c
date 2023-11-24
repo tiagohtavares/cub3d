@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/10/31 12:04:38 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:22:21 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../includes/error.h"
 #include <stdio.h>
 
-void error(char *msg, t_data *prog, int exit_code)
+void	error(char *msg, t_data *prog, int exit_code)
 {
 	ft_putendl_fd(msg, STDERR_FILENO);
 	terminate_prog(prog, exit_code);
