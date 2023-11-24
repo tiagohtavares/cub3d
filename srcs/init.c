@@ -6,12 +6,12 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/14 13:29:15 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:20:40 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include "../includes/read_map.h"
+#include "../includes/errors.h"
 
 void	ft_start(t_data *gameinfo)
 {
@@ -19,7 +19,10 @@ void	ft_start(t_data *gameinfo)
 	gameinfo->mlx_window = mlx_new_window(gameinfo->mlx, W_WIDTH, W_HEIGHT, "cub3d");
 	ft_get_player_position(gameinfo); */
 	ft_read_file(gameinfo->file_path, gameinfo);
-	ft_map_size(gameinfo);
+	if (!ft_valid_chars(gameinfo->map, VALID_CHARS))
+		ft_error(ERR_CHAR, gameinfo, EXIT_FAILURE);
+	ft_check_map(gameinfo->map, gameinfo->map_height, gameinfo);
+	// ft_map_size(gameinfo);
 	// ft_raycast(gameinfo);
 }
 

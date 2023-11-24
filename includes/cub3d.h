@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/20 16:39:02 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:21:32 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@
 // Minimap size
 #define MAP_WIDTH 8
 #define MAP_HEIGHT 8
+
+#define VALID_CHARS " 01NSWE"
+#define FLOOR_CHARS "01NSWE"
+#define PLAYER "NSWE"
 
 enum e_walls
 {
@@ -101,10 +105,47 @@ typedef struct s_data
 	int			player_starty;
 	double		player_angle;
 	t_texture	textures;
-	char		**map_copy;
+	char		**map_padded;
 }	t_data;
 
-//read_map.c
+
+// DEBUG // TMP
+void	ft_map_print(char **map);
+void	ft_file_print(t_list *file);
+void	ft_textures_print(t_texture texture);
+
+// MAP CHECK
+ // UTILS
+void	ft_check_file_ext(char *file, t_data *gameinfo);
+int		ft_valid_chars(char **map, char *set);
+char	**ft_copy_map(char **map, int height);
+int		ft_isflood_line(char *line);
+
+void	ft_check_pos(char *set, int x, int y, t_data *gameinfo);
+int		check_floors(char *set, int x, int y, t_data *gameinfo);
+void	ft_check_player(t_data *gameinfo, char **map);
+void	ft_check_map(char **map, int height, t_data *gameinfo);
+
+// READ MAP
+void	ft_map_size(t_data *gameinfo);
+void	ft_read_file(char *filepath, t_data *gameinfo);
+void	ft_read_map(t_list *file, t_data *gameinfo);
+void	ft_get_map(t_data *gameinfo, int start);
+
+// Texture Check
+ // UTILS
+int		ft_isempty_line(char *line);
+int		ft_isallnumeric(char *rgb);
+int		ft_skip_line(char *line, t_data *gameinfo);
+int		ft_create_rgb(char **rgb, t_data *gameinfo);
+
+int		ft_check_textures(char *line);
+void	ft_get_textures(char *line, t_texture *textures, t_data *gameinfo);
+char	*ft_extract_texture(char *line, t_data *gameinfo, t_wall *wall);
+int		ft_get_colors(char *line, t_data *gameinfo, int surface);
+char	**ft_validate_colors(char *line, t_data *gameinfo);
+
+
 
 
 //init.c

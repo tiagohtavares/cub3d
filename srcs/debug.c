@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:01:06 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/16 11:48:37 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:38:07 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_map_print(char **map)
 
 	ft_printf("\n\n----------MAP ARRAY---------\n");
 	i = -1;
-	while(map[++i])
+	while (map[++i])
 		ft_printf("%s\n", map[i]);
 	ft_printf("----------END----------\n\n");
 }

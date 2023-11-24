@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/16 11:48:20 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:46:28 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_error(char *msg, t_data *prog, int exit_code)
 {
-	ft_putendl_fd(msg, STDOUT_FILENO); // TODO: Change to STDERR
+	ft_putendl_fd(msg, STDERR_FILENO);
 	terminate_prog(prog, exit_code);
 }
 
@@ -49,7 +49,7 @@ void	terminate_prog(t_data *prog, int exit_code)
 		}
 		prog->map = ft_db_free(prog->map);
 		free(prog->file_path);
-		ft_lstclear(&prog->map_file,  free);
+		ft_lstclear(&prog->map_file, free);
 	}
 	exit(exit_code);
 }

@@ -6,7 +6,7 @@
 #    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/11/16 12:41:15 by heda-sil         ###   ########.fr        #
+#    Updated: 2023/11/24 14:45:31 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ endif
 
 SRCF =	main read_map init player_position \
 		keys error raycast draw texture_check \
-		texture_check_utils map_check \
+		texture_check_utils map_check map_check_utils \
 		debug
 
 SRCS= $(addprefix ${SRCS_DIR}/, $(addsuffix .c, ${SRCF}))

@@ -6,17 +6,16 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:05:36 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/14 12:16:03 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:03:32 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 #include "../includes/errors.h"
-#include "../includes/debug.h"
 
 int	main(int argc, char **argv)
 {
-	t_data gameinfo;
+	t_data	gameinfo;
 
 	if (argc != 2)
 	{

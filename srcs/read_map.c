@@ -6,12 +6,12 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:29:38 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/22 17:21:12 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:18:49 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include "../includes/read_map.h"
+#include "../includes/errors.h"
 
 //Gets map size
 void	ft_map_size(t_data *gameinfo)
@@ -62,41 +62,7 @@ void	ft_read_file(char *filepath, t_data *gameinfo)
 	ft_read_map(map, gameinfo);
 }
 
-/* // Loops the list and finds the line where map start/also saves the texture info
-// BUG?: If file has any newline after map it considers as error of new line
-void	ft_read_map(t_list *file, t_data *gameinfo)
-{
-	int		map_start;
-	int		mid_map;
-	int		map_end;
-
-	map_start = 0;
-	mid_map = 0;
-	map_end = 0;
-	while (file)
-	{
-		if (!mid_map && ft_skip_line(file->content, gameinfo))
-		{
-			file = file->next;
-			map_start++;
-			continue ;
-		}
-		mid_map = 1;
-		if (ft_isempty_line(file->content)) // If empty line
-			map_end = map_start + gameinfo->map_height;
-		else
-			gameinfo->map_height++;
-		if (!ft_isempty_line(file->content) && map_end)
-			ft_error(ERR_NL, gameinfo, EXIT_FAILURE);
-		file = file->next;
-	}
-	if (!mid_map)
-		ft_error(ERR_SCENE, gameinfo, EXIT_FAILURE);
-	ft_get_map(gameinfo, map_start);
-} */
-
 // Loops the list and finds the line where map start/also saves the texture info
-// BUG?: If file has any newline after map it considers as error of new line
 void	ft_read_map(t_list *file, t_data *gameinfo)
 {
 	int		map_start;
@@ -131,7 +97,7 @@ void	ft_get_map(t_data *gameinfo, int start)
 	t_list	*tmp;
 
 	tmp = gameinfo->map_file;
-	while (start--) // Skips the file to the starting line of the map
+	while (start--)
 		tmp = tmp->next;
 	gameinfo->map = ft_calloc(gameinfo->map_height + 1, sizeof(*gameinfo->map));
 	i = -1;
@@ -140,7 +106,5 @@ void	ft_get_map(t_data *gameinfo, int start)
 		gameinfo->map[i] = ft_strtrim(tmp->content, "\n");
 		tmp = tmp->next;
 	}
-	ft_map_print(gameinfo->map);
 	ft_lstclear(&gameinfo->map_file, free);
-	ft_check_map(gameinfo->map, gameinfo->map_height, gameinfo);
 }

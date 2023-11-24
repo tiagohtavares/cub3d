@@ -6,18 +6,17 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:54:00 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/22 18:00:37 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:58:58 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 #include "../includes/errors.h"
-#include "../includes/texture_check.h"
 
 // Checks if a string has no chars besides whitespaces
 int	ft_isempty_line(char *line)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (line[++i])
@@ -32,6 +31,7 @@ int	ft_isempty_line(char *line)
 int	ft_isallnumeric(char *rgb)
 {
 	int	j;
+
 	j = -1;
 	if (ft_strlen(rgb) == 0)
 		return (0);
@@ -46,9 +46,9 @@ int	ft_isallnumeric(char *rgb)
 // Skips all lines that don't contain map information (texture and blank line)
 int	ft_skip_line(char *line, t_data *gameinfo)
 {
-	if (ft_isempty_line(line)) // Skips empty lines
+	if (ft_isempty_line(line))
 		return (1);
-	else if (ft_check_textures(line)) // Skips texture lines
+	else if (ft_check_textures(line))
 	{
 		ft_get_textures(line, &gameinfo->textures, gameinfo);
 		return (1);
