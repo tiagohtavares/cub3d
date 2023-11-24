@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:39:15 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/24 11:31:41 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:50:22 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_load_texture(t_data *g)
 				&g->image[i].bpp,
 				&g->image[i].line_length, &g->image[i].endian);
 		g->image[i].texture = malloc(g->image[i].x
-				* g->image[i].y * sizeof(int));
+				* g->image[i].y * 2 * sizeof(int));
 		j = 0;
 		while (j < g->image[i].x * g->image[i].y)
 		{

@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/24 11:22:10 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:38:53 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_start(t_data *g)
 {
 	g->map = ft_read_map(g->map_file, g->map);
+	free(g->map_file);
 	g->mlx = mlx_init();
 	g->mlx_window = mlx_new_window(g->mlx, W_WIDTH, W_HEIGHT, "cub3d");
 	ft_texture(g);

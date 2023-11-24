@@ -6,7 +6,7 @@
 /*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/24 11:22:21 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:54:14 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,28 @@ void	*ft_db_free(char **ptr)
 	return (ptr);
 }
 
+void	ft_terminate_extra(t_data *prog)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		mlx_destroy_image(prog->mlx, prog->image[i].image);
+		free(prog->image[i].texture);
+		i++;
+	}
+}
+
 void	terminate_prog(t_data *prog, int exit_code)
 {
 	if (prog)
 	{
+		ft_terminate_extra(prog);
+		if (prog->mlx_main)
+		{
+			mlx_destroy_image(prog->mlx, prog->mlx_main);
+		}
 		if (prog->mlx_window)
 		{
 			mlx_destroy_window(prog->mlx, prog->mlx_window);
@@ -50,10 +68,6 @@ void	terminate_prog(t_data *prog, int exit_code)
 		if (prog->map)
 		{
 			prog->map = ft_db_free(prog->map);
-		}
-		if (prog->map_file)
-		{
-			free(prog->map_file);
 		}
 	}
 	exit(exit_code);
