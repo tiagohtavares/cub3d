@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttavares <ttavares@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:51:37 by ttavares          #+#    #+#             */
-/*   Updated: 2022/11/22 11:20:18 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:47:31 by ttavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static int	ft_nbrflip(int n)
 {
 	if (n == -2147483648)
 	{
-			n++;
-			n *= -1;
+		n++;
+		n *= -1;
 	}
 	else if (n < 0)
 		n *= -1;

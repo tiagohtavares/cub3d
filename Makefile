@@ -6,7 +6,7 @@
 #    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/11/24 14:45:31 by heda-sil         ###   ########.fr        #
+#    Updated: 2023/11/24 16:14:20 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ VFLAGS+= --log-file=mem.log
 endif
 
 SRCF =	main read_map init player_position \
-		keys error raycast draw texture_check \
+		keys keys_utils error raycast raycast_utils textures textures_utils texture_check \
 		texture_check_utils map_check map_check_utils \
 		debug
 

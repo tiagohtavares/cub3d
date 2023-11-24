@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:52:11 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/24 15:37:36 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:34:32 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	ft_get_textures(char *line, t_texture *text, t_data *game)
 	else if (ft_strnstr(line, "WE", ft_strlen(line)))
 		text->wall[W].path = ft_extract_texture(line, game, &text->wall[W]);
 	else if (ft_strnstr(line, "C", ft_strlen(line)))
-		text->ceiling = ft_get_colors(line, game, text->ceiling);
+		game->ceilingcolor = ft_get_colors(line, game, game->ceilingcolor);
 	else if (ft_strnstr(line, "F", ft_strlen(line)))
-		text->floor = ft_get_colors(line, game, text->floor);
+		game->floorcolor = ft_get_colors(line, game, game->floorcolor);
 }
 
 char	*ft_extract_texture(char *line, t_data *gameinfo, t_wall *wall)
