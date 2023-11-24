@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/24 14:46:28 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:50:23 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ void	free_wall_textures(t_texture *texture, void *mlx)
 	i = -1;
 	while (++i < 4)
 	{
-		free(texture->walls[i].path);
-		texture->walls[i].path = NULL;
-		if (texture->walls[i].img)
+		free(texture->wall[i].path);
+		texture->wall[i].path = NULL;
+		if (texture->wall[i].img)
 		{
-			mlx_destroy_image(mlx, texture->walls[i].img);
-			texture->walls[i].img = NULL;
+			mlx_destroy_image(mlx, texture->wall[i].img);
+			texture->wall[i].img = NULL;
 		}
 	}
-	free(texture->walls);
-	texture->walls = NULL;
+	free(texture->wall);
+	texture->wall = NULL;
 }

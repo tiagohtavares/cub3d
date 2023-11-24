@@ -57,8 +57,8 @@ void	ft_init(t_data *gameinfo)
 	gameinfo->map_width = 0;
 	gameinfo->map_height = 0;
 	gameinfo->textures.ceiling = -1;
-	gameinfo->textures.floor = -1;
-	gameinfo->textures.walls = ft_calloc(4, sizeof(*gameinfo->textures.walls));
+	gameinfo->textures.floor   = -1;
+	gameinfo->textures.wall    = ft_calloc(4, sizeof(*gameinfo->textures.wall));
 	gameinfo->textures.nbr_txt = 0;
 	ft_start(gameinfo);
 }

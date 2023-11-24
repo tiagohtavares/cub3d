@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:48:59 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/24 15:24:36 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:45:54 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@
 // Checks if char at pos x,y are valid
 void	ft_check_pos(char *set, int x, int y, t_data *gameinfo)
 {
-	if (!ft_strchr(set, gameinfo->map_padded[y][x]))
+	if (!ft_strchr(set, gameinfo->map_dup[y][x]))
 	{
-		gameinfo->map_padded = ft_db_free(gameinfo->map_padded);
+		gameinfo->map_dup = ft_db_free(gameinfo->map_dup);
 		ft_error(ERR_WALLS, gameinfo, EXIT_FAILURE);
 	}
 }
 
 int	check_floors(char *set, int x, int y, t_data *gameinfo)
 {
-	while (gameinfo->map_padded[y][x] && (gameinfo->map_padded[y][x] == '0' || \
-	ft_strchr(PLAYER, gameinfo->map_padded[y][x])))
+	while (gameinfo->map_dup[y][x] && (gameinfo->map_dup[y][x] == '0' || \
+	ft_strchr(PLAYER, gameinfo->map_dup[y][x])))
 	{
 		if (y == 1 || y == gameinfo->map_height || x == 0 || \
-		x == (int)ft_strlen(gameinfo->map_padded[y]) - 2)
+		x == (int)ft_strlen(gameinfo->map_dup[y]) - 2)
 		{
-			gameinfo->map_padded = ft_db_free(gameinfo->map_padded);
+			gameinfo->map_dup = ft_db_free(gameinfo->map_dup);
 			ft_error(ERR_WALLS, gameinfo, EXIT_FAILURE);
 		}
 		ft_check_pos(set, x - 1, y - 1, gameinfo);
@@ -70,27 +70,27 @@ void	ft_check_player(t_data *gameinfo, char **map)
 }
 
 // Main func to check if map is good
-void	ft_check_map(char **map, int height, t_data *gameinfo)
+void	ft_check_map(char **map, int height, t_data *game)
 {
 	int	i;
 	int	j;
 
-	gameinfo->map_padded = ft_copy_map(map, height);
+	game->map_dup = ft_copy_map(map, height);
 	i = 0;
 	j = 0;
-	while (gameinfo->map_padded[i])
+	while (game->map_dup[i])
 	{
-		if (!ft_isflood_line(gameinfo->map_padded[i] + j))
+		if (!ft_isflood_line(game->map_dup[i] + j))
 		{
 			i++;
 			j = 0;
 			continue ;
 		}
-		while (gameinfo->map_padded[i][j] != '0' && \
-		!ft_strchr(PLAYER, gameinfo->map_padded[i][j]))
+		while (game->map_dup[i][j] != '0' && \
+		!ft_strchr(PLAYER, game->map_dup[i][j]))
 			j++;
-		j = check_floors(FLOOR_CHARS, j, i, gameinfo);
+		j = check_floors(FLOOR_CHARS, j, i, game);
 	}
-	gameinfo->map_padded = ft_db_free(gameinfo->map_padded);
-	ft_check_player(gameinfo, gameinfo->map);
+	game->map_dup = ft_db_free(game->map_dup);
+	ft_check_player(game, game->map);
 }

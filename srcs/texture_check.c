@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:52:11 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/24 14:59:22 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:37:36 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,20 @@ int	ft_check_textures(char *line)
 }
 
 // Gets the textures from the passed line
-void	ft_get_textures(char *line, t_texture *textures, t_data *gameinfo)
+void	ft_get_textures(char *line, t_texture *text, t_data *game)
 {
 	if (ft_strnstr(line, "NO", ft_strlen(line)))
-		textures->walls[N].path = ft_extract_texture(line, gameinfo, \
-		&textures->walls[N]);
+		text->wall[N].path = ft_extract_texture(line, game, &text->wall[N]);
 	else if (ft_strnstr(line, "SO", ft_strlen(line)))
-		textures->walls[S].path = ft_extract_texture(line, gameinfo, \
-		&textures->walls[S]);
+		text->wall[S].path = ft_extract_texture(line, game, &text->wall[S]);
 	else if (ft_strnstr(line, "EA", ft_strlen(line)))
-		textures->walls[E].path = ft_extract_texture(line, gameinfo, \
-		&textures->walls[E]);
+		text->wall[E].path = ft_extract_texture(line, game, &text->wall[E]);
 	else if (ft_strnstr(line, "WE", ft_strlen(line)))
-		textures->walls[W].path = ft_extract_texture(line, gameinfo, \
-		&textures->walls[W]);
+		text->wall[W].path = ft_extract_texture(line, game, &text->wall[W]);
 	else if (ft_strnstr(line, "C", ft_strlen(line)))
-		textures->ceiling = ft_get_colors(line, gameinfo, textures->ceiling);
+		text->ceiling = ft_get_colors(line, game, text->ceiling);
 	else if (ft_strnstr(line, "F", ft_strlen(line)))
-		textures->floor = ft_get_colors(line, gameinfo, textures->floor);
+		text->floor = ft_get_colors(line, game, text->floor);
 }
 
 char	*ft_extract_texture(char *line, t_data *gameinfo, t_wall *wall)

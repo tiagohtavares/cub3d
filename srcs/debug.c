@@ -40,10 +40,10 @@ void	ft_file_print(t_list *file)
 void	ft_textures_print(t_texture texture)
 {
 	ft_printf("\n\n----------TEXTURES INFO---------\n");
-	ft_printf("NO: %s\n", texture.walls[N].path);
-	ft_printf("SO: %s\n", texture.walls[S].path);
-	ft_printf("EA: %s\n", texture.walls[E].path);
-	ft_printf("WE: %s\n", texture.walls[W].path);
+	ft_printf("NO: %s\n", texture.wall[N].path);
+	ft_printf("SO: %s\n", texture.wall[S].path);
+	ft_printf("EA: %s\n", texture.wall[E].path);
+	ft_printf("WE: %s\n", texture.wall[W].path);
 	ft_printf("F: %X\n", texture.floor);
 	ft_printf("C: %X\n", texture.ceiling);
 	ft_printf("----------END----------\n\n");

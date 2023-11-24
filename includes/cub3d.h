@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/24 15:21:32 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:43:26 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_wall
 // Struct to keep track of all textures including ceiling and floor color
 typedef struct s_texture
 {
-	t_wall	*walls;
+	t_wall	*wall;
 	int		floor;
 	int		ceiling;
 	int		nbr_txt;
@@ -105,7 +105,7 @@ typedef struct s_data
 	int			player_starty;
 	double		player_angle;
 	t_texture	textures;
-	char		**map_padded;
+	char		**map_dup;
 }	t_data;
 
 
@@ -124,7 +124,7 @@ int		ft_isflood_line(char *line);
 void	ft_check_pos(char *set, int x, int y, t_data *gameinfo);
 int		check_floors(char *set, int x, int y, t_data *gameinfo);
 void	ft_check_player(t_data *gameinfo, char **map);
-void	ft_check_map(char **map, int height, t_data *gameinfo);
+void	ft_check_map(char **map, int height, t_data *game);
 
 // READ MAP
 void	ft_map_size(t_data *gameinfo);
