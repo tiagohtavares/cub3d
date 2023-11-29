@@ -6,13 +6,12 @@
 #    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/11/24 16:14:20 by heda-sil         ###   ########.fr        #
+#    Updated: 2023/11/29 12:04:45 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#LIBS
-LIBFT= ${LIBFT_DIR}/libft.a
-LIBFT_LIB= -L${LIBFT_DIR} -lft
+LIBFT	= ./libft/libft.a
+LIBFT_DIR = ./libft
 
 MINILIBX = ./minilibx-linux/libmlx_Linux.a
 MINILIBX_DIR = ./minilibx-linux
@@ -20,11 +19,7 @@ MINILIBX_DIR = ./minilibx-linux
 CC	= cc -Wall -Wextra -Werror
 RM	= rm -f
 
-#DIRECTORIES
-SRCS_DIR= srcs
-INC= includes
-OBJ_DIR= obj
-LIBFT_DIR= libft
+includes = includes
 
 VFLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes
 
@@ -40,17 +35,28 @@ VFLAGS+= --log-file=mem.log
 
 endif
 
-SRCF =	main read_map init player_position \
-		keys keys_utils error raycast raycast_utils textures textures_utils texture_check \
-		texture_check_utils map_check map_check_utils \
-		debug
+SRCS =	./srcs/main ./srcs/read_map ./srcs/init ./srcs/player_position \
+	./srcs/keys ./srcs/keys_utils ./srcs/error ./srcs/raycast \
+	./srcs/raycast_utils ./srcs/textures ./srcs/textures_utils \
+	./srcs/texture_check ./srcs/texture_check_utils ./srcs/map_check \
+	./srcs/map_check_utils \
+	./srcs/debug \
+	./get_next_line/get_next_line ./get_next_line/get_next_line_utils
 
-SRCS= $(addprefix ${SRCS_DIR}/, $(addsuffix .c, ${SRCF}))
-OBJS= $(addprefix ${OBJ_DIR}/, $(addsuffix .o, ${SRCF}))
-SRCSB= $(addprefix ${SRCS_DIR}/, $(addsuffix .c, ${SRCBF}))
-OBJSB= $(addprefix ${OBJ_DIR}/, $(addsuffix .o, ${SRCBF}))
+SRCS_B = ./bonus/srcs/main ./bonus/srcs/read_map ./bonus/srcs/init \
+	./bonus/srcs/player_position ./bonus/srcs/keys ./bonus/srcs/keys_utils \
+	./bonus/srcs/error ./bonus/srcs/raycast ./bonus/srcs/raycast_utils \
+	./bonus/srcs/textures ./bonus/srcs/textures_utils ./bonus/srcs/texture_check \
+	./bonus/srcs/texture_check_utils ./bonus/srcs/map_check \
+	./bonus/srcs/map_check_utils \
+	./bonus/srcs/debug \
+	./get_next_line/get_next_line ./get_next_line/get_next_line_utils
+
+OBJS = $(SRCS:=.o)
+OBJS_B = $(SRCS_B:=.o)
 
 NAME = cub3d
+NAME_B = cub3d_bonus
 
 all: $(NAME)
 
@@ -61,24 +67,23 @@ $(MINILIBX):
 	make -C $(MINILIBX_DIR)
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
-	$(CC) $(OBJS) -I./${INC} ${LIBFT_LIB} $(MINILIBX) -lXext -lX11 -lm -o $(NAME)
-
-${OBJ_DIR}/%.o: ${SRCS_DIR}/%.c | ${OBJ_DIR}
-	${CC} ${CFLAGS} -I./${INC} -c $< -o $@
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+	$(CC) -g $(OBJS) $(MINILIBX) -I./includes -lXext -lX11 -lm $(LIBFT) -o $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_B)
 	make clean -C $(LIBFT_DIR)
 	make clean -C $(MINILIBX_DIR)
 
 fclean:	clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME_B)
 	make fclean -C $(LIBFT_DIR)
 
 re:	fclean all
+
+bonus: $(NAME_B)
+
+$(NAME_B): $(OBJS_B) $(LIBFT) $(MINILIBX)
+	$(CC) -g $(OBJS_B) $(MINILIBX) -I./includes -lXext -lX11 -lm $(LIBFT) -o $(NAME_B)
 
 debug:
 	${MAKE} DEBUG=1 re
@@ -91,3 +96,16 @@ mem:
 	${MAKE} DEBUG=1
 	${MAKE} clean
 	valgrind ${VFLAGS} ./cub3d ./assets/maps/valid/map.cub
+
+debugb:
+	${MAKE} fclean
+	${MAKE} DEBUG=1 bonus
+
+runb: bonus
+	${MAKE} clean
+	./cub3d_bonus ./assets/maps/bonus/valid/map.cub
+
+memb:
+	${MAKE} DEBUG=1 bonus
+	${MAKE} clean
+	valgrind ${VFLAGS} ./cub3d_bonus ./assets/maps/bonus/valid/map.cub

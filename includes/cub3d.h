@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/24 16:29:42 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:36:49 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
+# include "./get_next_line.h"
 # include "../minilibx-linux/mlx.h"
 # include "../minilibx-linux/mlx_int.h"
 # include <math.h>
