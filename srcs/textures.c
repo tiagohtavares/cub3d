@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:39:15 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/24 12:50:22 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:19:14 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include "../includes/errors.h"
 
 void	ft_load_image(t_data *g, int i)
 {
@@ -20,8 +21,7 @@ void	ft_load_image(t_data *g, int i)
 			&g->image[i].x, &g->image[i].y);
 	if (g->image[i].image == NULL)
 	{
-		ft_printf("Error opening the image!\n");
-		exit(0);
+		ft_error(ERR_TEXT, g, EXIT_FAILURE);
 	}
 }
 
@@ -55,13 +55,12 @@ void	ft_load_texture(t_data *g)
 
 void	ft_texture(t_data *g)
 {
-	g->path[0] = "assets/imgs/mossy_64.xpm";
-	g->path[1] = "assets/imgs/brown_64.xpm";
-	g->path[2] = "assets/imgs/brick_64.xpm";
-	g->path[3] = "assets/imgs/gray_64.xpm";
-	g->floorcolor = C_GREEN;
-	g->ceilingcolor = C_BLUE;
+	g->path[0] = g->textures.wall[0].path;
+	g->path[1] = g->textures.wall[1].path;
+	g->path[2] = g->textures.wall[2].path;
+	g->path[3] = g->textures.wall[3].path;
 	ft_load_texture(g);
+	ft_free_wall(&g->textures);
 }
 
 void	ft_set_pixel(t_data *g, int x, int y, int color)

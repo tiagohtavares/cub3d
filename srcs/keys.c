@@ -11,7 +11,9 @@
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include "../includes/error.h"
+#include "../includes/errors.h"
+#include <math.h>
+#include <stdio.h>
 
 void	move_w(t_data *g)
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+         #
+#    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/11/24 11:40:04 by ttavares         ###   ########.fr        #
+#    Updated: 2023/11/24 16:14:20 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,17 +36,19 @@ VFLAGS+= --log-file=mem.log
 endif
 
 SRCS =	./srcs/main ./srcs/read_map ./srcs/init ./srcs/player_position \
-		./srcs/keys ./srcs/keys_utils ./srcs/error ./srcs/raycast ./srcs/raycast_utils ./srcs/textures ./srcs/textures_utils \
+		./srcs/keys ./srcs/keys_utils ./srcs/error ./srcs/raycast ./srcs/raycast_utils ./srcs/textures ./srcs/textures_utils ./srcs/texture_check \
+		./srcs/texture_check_utils ./srcs/map_check ./srcs/map_check_utils \
+		./srcs/debug \
 		./get_next_line/get_next_line ./get_next_line/get_next_line_utils
 
 OBJS = $(SRCS:=.o)
 
 NAME = cub3d
 
-all:	$(NAME)
+all: $(NAME)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	make bonus -C $(LIBFT_DIR)
 
 $(MINILIBX):
 	make -C $(MINILIBX_DIR)
@@ -63,16 +65,16 @@ fclean:	clean
 	$(RM) $(NAME)
 	make fclean -C $(LIBFT_DIR)
 
-re:	fclean all bonus
+re:	fclean all
 
 debug:
-	${MAKE} DEBUG=1 all
+	${MAKE} DEBUG=1 re
 
 run: all
 	${MAKE} clean
-	./cub3d ./assets/test.cub
+	./cub3d ./assets/maps/valid/map.cub
 
 mem:
 	${MAKE} DEBUG=1
 	${MAKE} clean
-	valgrind ${VFLAGS} ./cub3d ./assets/test.cub
+	valgrind ${VFLAGS} ./cub3d ./assets/maps/valid/map.cub

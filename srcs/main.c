@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:05:36 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/24 10:18:41 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:57:43 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include "../includes/error.h"
+#include "../includes/errors.h"
 
 int	main(int argc, char **argv)
 {
@@ -19,9 +19,9 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		error(ERROR_USE, NULL, EXIT_FAILURE);
+		ft_error(ERR_USE, NULL, EXIT_FAILURE);
 	}
-	g.map_file = ft_strdup(argv[1]);
+	g.file_path = ft_strdup(argv[1]);
 	ft_init(&g);
 	mlx_hook(g.mlx_window, 17, (1L << 0), x_button, &g);
 	mlx_key_hook(g.mlx_window, &keys, &g);

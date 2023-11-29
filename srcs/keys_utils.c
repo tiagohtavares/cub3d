@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   keys_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttavares <ttavares@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:33:53 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/24 11:35:17 by ttavares         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:49:00 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include "../includes/error.h"
+#include "../includes/errors.h"
 
 void	moves(int key, t_data *g)
 {
