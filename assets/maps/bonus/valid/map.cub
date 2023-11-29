@@ -8,7 +8,7 @@ EA ./assets/imgs/gray_64.xpm
 
 DO  ./assets/imgs/redbrick_32.xpm
 
-F 225,30,0
+F 220,100,0
 
 C 225,30,0
 

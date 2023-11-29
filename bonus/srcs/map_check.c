@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 11:48:59 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/29 12:57:11 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:02:38 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,17 @@ int	check_doors(int x, int y, t_data *gameinfo)
 	if (gameinfo->map_dup[y - 1][x] == '1' && gameinfo->map_dup[y + 1][x] == '1')
 	{
 		if (gameinfo->map_dup[y][x - 1] == '1' || gameinfo->map_dup[y][x + 1] == '1' || gameinfo->map_dup[y][x - 1] == 'D' || gameinfo->map_dup[y][x + 1] == 'D')
-			ft_error("INVALID DOOR SETUP", gameinfo, EXIT_FAILURE);
+			ft_error("INVALID DOOR SETUP", gameinfo, EXIT_FAILURE); // TMP: Change the msg
 		doorv = 1;
 	}
 	if (gameinfo->map_dup[y][x - 1] == '1' && gameinfo->map_dup[y][x + 1] == '1')
 	{
 	if (gameinfo->map_dup[y - 1][x] == '1' || gameinfo->map_dup[y + 1][x] == '1' || gameinfo->map_dup[y - 1][x] == 'D' || gameinfo->map_dup[y + 1][x] == 'D')
-			ft_error("INVALID DOOR SETUP", gameinfo, EXIT_FAILURE);
+			ft_error("INVALID DOOR SETUP", gameinfo, EXIT_FAILURE); // TMP: Change the msg
 		doorh = 1;
 	}
 	if (doorh + doorv != 1)
-		ft_error("INVALID DOOR SETUP", gameinfo, EXIT_FAILURE);
+		ft_error("INVALID DOOR SETUP", gameinfo, EXIT_FAILURE); // TMP: Change the msg
 	return (x + 1);
 }
 

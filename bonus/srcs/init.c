@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/29 12:36:11 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:45:13 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void	ft_start(t_data *g)
 			&g->line_length, &g->endian);
 	ft_get_player_position(g);
 	ft_raycast(g);
-	printf("GOOD MAP\n"); // REMOVE
+	// ft_draw_minimap(g);
+	// mlx_put_image_to_window(g->mlx, g->mlx_window, g->mlx_main, 0, 0);
+
 }
 
 void	ft_init(t_data *g)
@@ -43,11 +45,7 @@ void	ft_init(t_data *g)
 	g->img_s = NULL;
 	g->img_e = NULL;
 	g->img_w = NULL;
-	g->image[0].texture = NULL;
-	g->image[1].texture = NULL;
-	g->image[2].texture = NULL;
-	g->image[3].texture = NULL;
-	g->image[4].texture = NULL;
+	g->image = ft_calloc(TEXT_NBR - 2, sizeof(*g->image));
 	g->image[0].image = NULL;
 	g->image[1].image = NULL;
 	g->image[2].image = NULL;
@@ -57,7 +55,8 @@ void	ft_init(t_data *g)
 	g->map_height = 0;
 	g->ceilingcolor = -1;
 	g->floorcolor = -1;
-	g->textures.wall = ft_calloc(TEXT_NBR - 1, sizeof(*g->textures.wall));
+	g->textures.wall = ft_calloc(TEXT_NBR - 2, sizeof(*g->textures.wall));
 	g->textures.nbr_txt = 0;
+	g->old_x = W_WIDTH / 2;
 	ft_start(g);
 }

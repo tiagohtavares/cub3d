@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/29 12:05:18 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:08:40 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ void	ft_clean_walls(t_data *prog)
 	if (prog->textures.wall)
 	{
 		ft_free_wall(&prog->textures);
+	}
+	if (prog->image)
+	{
+		free(prog->image);
 	}
 }
 
