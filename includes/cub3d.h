@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/24 16:29:42 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:48:24 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@
 
 # define TEXTUREW 64
 # define TEXTUREH 64
-
-# define C_RED 16711680
-# define C_BLUE 255
-# define C_GREEN 65280
-# define C_WHITE 16777215
-# define C_BLACK 0
 
 // Minimap size
 # define MAP_WIDTH 8
