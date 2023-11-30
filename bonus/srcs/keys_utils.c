@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:33:53 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/24 16:49:00 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/30 12:15:01 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	move_left(t_data *g)
 	oldplanex = g->planex;
 	g->planex = g->planex * cos(-0.1) - g->planey * sin(-0.1);
 	g->planey = oldplanex * sin(-0.1) + g->planey * cos(-0.1);
-	ft_raycast(g);
 }
 
 void	move_right(t_data *g)
@@ -54,7 +53,6 @@ void	move_right(t_data *g)
 	oldplanex = g->planex;
 	g->planex = g->planex * cos(0.1) - g->planey * sin(0.1);
 	g->planey = oldplanex * sin(0.1) + g->planey * cos(0.1);
-	ft_raycast(g);
 }
 
 int	x_button(t_data *g)
