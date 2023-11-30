@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:38:58 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/29 12:37:36 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:27:30 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	ft_hit(t_data *g)
 			g->mapy += g->stepy;
 			g->side = 1;
 		}
-		if (g->map[g->mapy][g->mapx] == '1' || g->map[g->mapy][g->mapx] == 'D')
+		if (g->map[g->mapy][g->mapx] == '1' || (g->map[g->mapy][g->mapx] == 'D' \
+		&& ft_get_door_state(g->door, g->mapx, g->mapy, g->nbr_doors) == 1))
 			g->hit = 1;
 	}
 }

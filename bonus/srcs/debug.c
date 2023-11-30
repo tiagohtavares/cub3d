@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:01:06 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/29 18:34:12 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:11:07 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_crosshair(t_data *game)
 			(j >= (W_HEIGHT / 2) + 2 && (i == (W_WIDTH / 2))) || \
 			(i <= (W_WIDTH / 2) - 2 && j == (W_HEIGHT / 2) ) || \
 			(j <= (W_HEIGHT / 2) - 2 && (i == (W_WIDTH / 2))))
-				ft_set_pixel(game, i, j, 0xFFFFFF);
+				ft_set_pixel(game, i, j, C_WHITE);
 			j++;
 		}
 		i++;
@@ -75,20 +75,7 @@ void	ft_draw_square(t_data *game, int x, int y, int color)
 {
 	int	i;
 	int	j;
-/* 	int	width;
-	int	height;
 
-	width = MAP_WIDTH;
-	height = MAP_HEIGHT;
-	printf("%d %d\n", x, y);
-	if (y > 4 && x > 4)
-	{
-		if (game->map[(x / MAP_WIDTH) - 4][(y / MAP_HEIGHT) - 4] == '1')
-		{
-			width = MAP_WIDTH / 2;
-			height = MAP_HEIGHT / 2;
-		}
-	} */
 	i = 0;
 	while(i < MAP_HEIGHT)
 	{
@@ -110,29 +97,28 @@ void	ft_draw_square(t_data *game, int x, int y, int color)
 	}
 }
 
-// TODO: Change color of squares and also size to a macro
-// TODO: Find how the hell we storing player grid pos
+// TODO: Change player drawing
 void	ft_draw_minimap(t_data *game)
 {
 	int	i;
 	int	j;
 
-	i = -game->mapy;
-	while(game->map[i + game->mapy])
+	i = 0;
+	while(game->map[i])
 	{
-		j = -game->mapx;
-		while(game->map[i + game->mapy][j + game->mapx])
+		j = 0;
+		while(game->map[i][j])
 		{
-			if(game->map[i + game->mapy][j + game->mapx] == '0')
-				ft_draw_square(game, (j + game->mapx) * MAP_WIDTH + 4, (i + game->mapy) * MAP_HEIGHT + 4, C_WHITE);
-			else if(game->map[i + game->mapy][j + game->mapx] == '1')
-				ft_draw_square(game, (j + game->mapx) * MAP_WIDTH + 4, (i + game->mapy) * MAP_HEIGHT + 4, C_BLACK);
-			else if (ft_strchr(PLAYER, game->map[i + game->mapy][j + game->mapx]))
-			{
-				ft_draw_square(game, ((j + game->mapx) * MAP_WIDTH) + 4, ((i + game->mapy) * MAP_HEIGHT) + 4, C_BLUE);
-			}
-			else if (game->map[game->mapy][game->mapx] == 'D')
-				ft_draw_square(game, (j + game->mapx) * MAP_WIDTH + 4, (i + game->mapy) * MAP_HEIGHT + 4, C_ORANGE);
+			if ((int)game->playerx == j && (int)game->playery == i)
+				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_BLUE);
+			else if (game->map[i][j] == '0')
+				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_WHITE);
+			else if(game->map[i][j] == '1')
+				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_BLACK);
+			else if (game->map[i][j] == 'D')
+				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_RED);
+			else if (ft_strchr(PLAYER, game->map[i][j]))
+				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_WHITE);
 			j++;
 		}
 		i++;

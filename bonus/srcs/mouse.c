@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:32:13 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/30 12:30:13 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/30 12:32:04 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	mouse(int x, int y, t_data *g)
 	int		dx;
 
 	if (x < W_WIDTH / 6)
-		mlx_mouse_move(g->mlx, g->mlx_window, x + W_WIDTH / 6, W_HEIGHT / 2);
+		mlx_mouse_move(g->mlx, g->mlx_window, W_WIDTH / 2, W_HEIGHT / 2);
 	if (x > (5 * W_WIDTH) / 6)
-		mlx_mouse_move(g->mlx, g->mlx_window, x - W_WIDTH / 6, W_HEIGHT / 2);
+		mlx_mouse_move(g->mlx, g->mlx_window, W_WIDTH / 2, W_HEIGHT / 2);
 	if (y < W_HEIGHT / 4 || y > (3 * W_HEIGHT) / 4)
 		mlx_mouse_move(g->mlx, g->mlx_window, x, W_HEIGHT / 2);
 	dx = g->old_x - x;

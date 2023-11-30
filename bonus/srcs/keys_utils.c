@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:33:53 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/30 12:15:01 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:26:53 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,19 @@ int	x_button(t_data *g)
 {
 	terminate_prog(g, EXIT_SUCCESS);
 	return (0);
+}
+
+void	open_door(t_data *g)
+{
+	int	i;
+
+	i = 0;
+	while (i < g->nbr_doors)
+	{
+		if (g->door[i].x == (int)(g->playerx + g->inidirx * 0.3) && \
+		g->door[i].y == (int)(g->playery + g->inidiry * 0.3))
+			g->door[i].state = 0;
+		i++;
+	}
+	// wait and then close door
 }
