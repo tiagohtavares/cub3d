@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:33:53 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/30 15:26:53 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:27:14 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,9 @@ void	moves(int key, t_data *g)
 	else if (key == XK_d)
 		move_d(g);
 	else if (key == XK_Right)
-		move_right(g);
+		rotate(g->inidirx, g->planex, 0.1, g);
 	else if (key == XK_Left)
-		move_left(g);
-}
-
-void	move_left(t_data *g)
-{
-	double	olddirx;
-	double	oldplanex;
-
-	olddirx = g->inidirx;
-	g->inidirx = g->inidirx * cos(-0.1) - g->inidiry * sin(-0.1);
-	g->inidiry = olddirx * sin(-0.1) + g->inidiry * cos(-0.1);
-	oldplanex = g->planex;
-	g->planex = g->planex * cos(-0.1) - g->planey * sin(-0.1);
-	g->planey = oldplanex * sin(-0.1) + g->planey * cos(-0.1);
-}
-
-void	move_right(t_data *g)
-{
-	double	olddirx;
-	double	oldplanex;
-
-	olddirx = g->inidirx;
-	g->inidirx = g->inidirx * cos(0.1) - g->inidiry * sin(0.1);
-	g->inidiry = olddirx * sin(0.1) + g->inidiry * cos(0.1);
-	oldplanex = g->planex;
-	g->planex = g->planex * cos(0.1) - g->planey * sin(0.1);
-	g->planey = oldplanex * sin(0.1) + g->planey * cos(0.1);
+		rotate(g->inidirx, g->planex, -0.1, g);
 }
 
 int	x_button(t_data *g)
@@ -61,6 +35,7 @@ int	x_button(t_data *g)
 	return (0);
 }
 
+// TODO: Think if we add a way to close the door automatically AND a way to open the door slower instead of pressing the button and the door just disappears
 void	open_door(t_data *g)
 {
 	int	i;
@@ -68,10 +43,14 @@ void	open_door(t_data *g)
 	i = 0;
 	while (i < g->nbr_doors)
 	{
-		if (g->door[i].x == (int)(g->playerx + g->inidirx * 0.3) && \
-		g->door[i].y == (int)(g->playery + g->inidiry * 0.3))
-			g->door[i].state = 0;
+		if (g->door[i].x == (int)(g->playerx + g->inidirx * 1.5) && \
+		g->door[i].y == (int)(g->playery + g->inidiry * 1.5))
+		{
+			if (g->door[i].state)
+				g->door[i].state = 0;
+			else
+				g->door[i].state = 1;
+		}
 		i++;
 	}
-	// wait and then close door
 }

@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:01:06 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/30 14:11:07 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/04 13:39:29 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_textures_print(t_texture texture)
 /* Draws a crosshair */
 void	ft_crosshair(t_data *game)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = (W_WIDTH / 2) - 5;
@@ -59,9 +59,9 @@ void	ft_crosshair(t_data *game)
 		j = (W_HEIGHT / 2) - 5;
 		while (j < (W_HEIGHT / 2) + 5)
 		{
-			if ((i >= (W_WIDTH / 2) + 2 && j == (W_HEIGHT / 2) ) || \
+			if ((i >= (W_WIDTH / 2) + 2 && j == (W_HEIGHT / 2)) || \
 			(j >= (W_HEIGHT / 2) + 2 && (i == (W_WIDTH / 2))) || \
-			(i <= (W_WIDTH / 2) - 2 && j == (W_HEIGHT / 2) ) || \
+			(i <= (W_WIDTH / 2) - 2 && j == (W_HEIGHT / 2)) || \
 			(j <= (W_HEIGHT / 2) - 2 && (i == (W_WIDTH / 2))))
 				ft_set_pixel(game, i, j, C_WHITE);
 			j++;
@@ -77,18 +77,18 @@ void	ft_draw_square(t_data *game, int x, int y, int color)
 	int	j;
 
 	i = 0;
-	while(i < MAP_HEIGHT)
+	while (i < MAP_HEIGHT)
 	{
 		j = 0;
-		while(j < MAP_WIDTH)
+		while (j < MAP_WIDTH)
 		{
-			if(i == 0)
+			if (i == 0)
 				ft_set_pixel(game, x + i, y + j, color);
-			if(i == MAP_HEIGHT - 1)
+			if (i == MAP_HEIGHT - 1)
 				ft_set_pixel(game, x + i + 1, y + j, color);
-			if(j == 0)
+			if (j == 0)
 				ft_set_pixel(game, x + i, y + j, color);
-			if(j == MAP_WIDTH - 1)
+			if (j == MAP_WIDTH - 1)
 				ft_set_pixel(game, x + i, y + j + 1, color);
 			ft_set_pixel(game, x + i, y + j, color);
 			j++;
@@ -104,21 +104,23 @@ void	ft_draw_minimap(t_data *game)
 	int	j;
 
 	i = 0;
-	while(game->map[i])
+	while (game->map[i])
 	{
 		j = 0;
-		while(game->map[i][j])
+		while (game->map[i][j])
 		{
 			if ((int)game->playerx == j && (int)game->playery == i)
 				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_BLUE);
 			else if (game->map[i][j] == '0')
 				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_WHITE);
-			else if(game->map[i][j] == '1')
+			else if (game->map[i][j] == '1')
 				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_BLACK);
-			else if (game->map[i][j] == 'D')
-				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_RED);
 			else if (ft_strchr(PLAYER, game->map[i][j]))
 				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_WHITE);
+			else if (game->map[i][j] == 'D' && ft_get_door_state(game->door, j, i, game->nbr_doors) == 1)
+				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_RED);
+			else if (game->map[i][j] == 'D')
+				ft_draw_square(game, (j * MAP_WIDTH) + 4, (i * MAP_HEIGHT) + 4, C_GREEN);
 			j++;
 		}
 		i++;

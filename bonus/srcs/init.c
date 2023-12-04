@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/30 14:36:31 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:33:08 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ void	ft_start(t_data *g)
 		ft_error(ERR_CHAR, g, EXIT_FAILURE);
 	ft_check_map(g->map, g->map_height, g);
 	g->nbr_doors = ft_count_doors(g->map);
-	g->door = ft_set_doors(g->door, g->nbr_doors, g->map);
-	if (!g->door)
-	{
-		exit(0);
-	}
+	g->door = ft_create_doors(g->door, g->nbr_doors, g->map);
 	g->mlx = mlx_init();
 	ft_texture(g);
 	g->mlx_window = mlx_new_window(g->mlx, W_WIDTH, W_HEIGHT, "cub3d");
@@ -35,7 +31,6 @@ void	ft_start(t_data *g)
 			&g->line_length, &g->endian);
 	ft_get_player_position(g);
 	ft_raycast(g);
-
 }
 
 void	ft_init(t_data *g)

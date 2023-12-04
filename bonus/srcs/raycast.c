@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:10:54 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/30 12:17:23 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:17:00 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ int	ft_raycast(t_data *g)
 	ft_crosshair(g);
 	ft_draw_minimap(g);
 	mlx_put_image_to_window(g->mlx, g->mlx_window, g->mlx_main, 0, 0);
+	mouse_pos(g);
 	return (0);
 }
