@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:32:13 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/12/08 10:59:42 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:56:48 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,18 @@ void	rotate(double olddirx, double oldplanex, double ang, t_data *g)
 	g->planey = oldplanex * sin(ang) + g->planey * cos(ang);
 }
 
-
 int	mouse(int x, int y, t_data *g)
 {
 	int	dx;
 
-
 	(void)y;
 	dx = x - (W_WIDTH / 2);
-	if (dx > -25 && dx < 25) // Creates a dead zone around crosshair
+	if (dx > -25 && dx < 25)
 		return (0);
 	if (dx > 0)
-		rotate(g->inidirx, g->planex, 1 - pow(2, (double)dx/-40000), g);
+		rotate(g->inidirx, g->planex, 1 - pow(2, (double)dx / -40000), g);
 	else if (dx < 0)
-		rotate(g->inidirx, g->planex, 1 - pow(2, (double)dx/-40000), g);
+		rotate(g->inidirx, g->planex, 1 - pow(2, (double)dx / -40000), g);
 	return (0);
 }
 

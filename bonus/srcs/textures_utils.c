@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:29:20 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/29 11:47:22 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:57:05 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_texture_side_n(t_data *g)
 			g->imagey = g->image[2].y;
 		}
 	}
-	else // TMP is a door
+	else
 	{
 		g->texture = g->image[4].texture;
 		g->imagex = g->image[4].x;
@@ -94,7 +94,7 @@ void	ft_texture_side_s(t_data *g)
 			g->imagey = g->image[1].y;
 		}
 	}
-	else // TMP - is a door
+	else
 	{
 		g->texture = g->image[4].texture;
 		g->imagex = g->image[4].x;
