@@ -6,16 +6,17 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:46:56 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/12/08 11:01:47 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:37:11 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef ERRORS_H
+# define ERRORS_H
 
 # include "./cub3d.h"
 
-# define ERR_USE "Error\nIncorrect program usage. Correct usage ./cub3d <map>.cub"
+# define ERR_USE "Error\nIncorrect program usage. Correct usage ./cub3d \
+<map>.cub"
 # define ERR_OPEN "Error\nFailed to open map file"
 # define ERR_CLOSE "Error\nFailed to close map file"
 # define ERR_SCENE "Error\nInvalid scene"
