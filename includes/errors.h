@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:46:56 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/24 17:17:10 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:35:45 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "./cub3d.h"
 
-# define ERR_USE "Error\nIncorrect program usage. Correct usage ./cub3d <map>.cub"
+# define ERR_USE "Error\nIncorrect program usage. Correct usage ./cub3d \
+<map>.cub"
 # define ERR_OPEN "Error\nFailed to open map file"
 # define ERR_CLOSE "Error\nFailed to close map file"
 # define ERR_SCENE "Error\nInvalid scene"
