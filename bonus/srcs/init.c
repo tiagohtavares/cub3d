@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/12/04 14:33:08 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/08 10:37:16 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,5 @@ void	ft_init(t_data *g)
 	g->floorcolor = -1;
 	g->textures.wall = ft_calloc(TEXT_NBR - 2, sizeof(*g->textures.wall));
 	g->textures.nbr_txt = 0;
-	g->old_x = W_WIDTH / 2;
 	ft_start(g);
 }

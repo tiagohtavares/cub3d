@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:32:13 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/12/04 16:38:01 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/08 10:36:59 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,15 @@ int	mouse(int x, int y, t_data *g)
 {
 	int	dx;
 
-	// REMOVE: old way to move base on when mouse is moved inside the game
-	// if (x < W_WIDTH / 6)
-	// 	mlx_mouse_move(g->mlx, g->mlx_window, W_WIDTH / 2, W_HEIGHT / 2);
-	// else if (x > (5 * W_WIDTH) / 6)
-	// 	mlx_mouse_move(g->mlx, g->mlx_window, W_WIDTH / 2, W_HEIGHT / 2);
-	// if (y < W_HEIGHT / 4 || y > (3 * W_HEIGHT) / 4)
-	// 	mlx_mouse_move(g->mlx, g->mlx_window, x, W_HEIGHT / 2);
-	// dx = x - g->old_x;
-	// if (dx == 0)
-	// {
-	// 	dx = x - (W_WIDTH / 2);
-	// 	if (dx > -50 && dx < 50) // Creates a dead zone around crosshair
-	// 		return (0);
-	// }
-	printf("x: %d\n", x);
-	printf("old: %d\n", g->old_x);
-	g->old_x = x;
+
 	(void)y;
-	// TMP: New way is based on difference between mouse pos and middle screen it creates a drift i need to make the value of rotation to be exponential and smoother
 	dx = x - (W_WIDTH / 2);
-	if (dx > -50 && dx < 50) // Creates a dead zone around crosshair
+	if (dx > -100 && dx < 100) // Creates a dead zone around crosshair
 		return (0);
-	printf("Dx: %d\n", dx); // REMOVE
-	printf("Dx: %f\n", 1 - pow(2, (double)dx/-10000)); //REMOVE
 	if (dx > 0)
-		rotate(g->inidirx, g->planex, 0.01, g);
+		rotate(g->inidirx, g->planex, 1 - pow(2, (double)dx/-50000), g);
 	else if (dx < 0)
-		rotate(g->inidirx, g->planex, -0.01, g);
+		rotate(g->inidirx, g->planex, 1 - pow(2, (double)dx/-50000), g);
 	return (0);
 }
 
