@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/30 15:31:11 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:03:27 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,11 @@ void	terminate_prog(t_data *prog, int exit_code)
 {
 	if (prog)
 	{
-		free(prog->door);
+		if (prog->door)
+			free(prog->door);
 		ft_clean_walls(prog);
 		if (prog->mlx_main)
-		{
 			mlx_destroy_image(prog->mlx, prog->mlx_main);
-		}
 		if (prog->mlx_window)
 			mlx_destroy_window(prog->mlx, prog->mlx_window);
 		if (prog->mlx)

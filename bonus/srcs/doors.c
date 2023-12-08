@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:13:01 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/12/04 14:05:50 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:24:02 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	ft_count_doors(char **map)
 	}
 	return (nbr_doors);
 }
-
 
 // Returns the state of a given door specified by xy coord
 int	ft_get_door_state(t_door *door, int x, int y, int nbr_doors)

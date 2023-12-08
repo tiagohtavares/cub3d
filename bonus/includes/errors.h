@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:46:56 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/24 17:17:10 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:01:47 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ last element of the scene"
 # define ERR_TEXTDUP "Error\nDuplicated texture"
 # define ERR_TEXT "Error\nInvalid texture file. Textures should be a valid xpm \
 file"
+# define ERR_DOOR "Error\nInvalid door. Doors must be inbetween two opposing \
+walls"
 
 void	ft_error(char *msg, t_data *prog, int exit_code);
 void	terminate_prog(t_data *prog, int exit_code);

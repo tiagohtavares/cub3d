@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/12/08 10:37:16 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:06:54 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_init(t_data *g)
 	g->mlx = NULL;
 	g->mlx_window = NULL;
 	g->mlx_main = NULL;
+	g->door = NULL;
 	g->img_n = NULL;
 	g->img_s = NULL;
 	g->img_e = NULL;
