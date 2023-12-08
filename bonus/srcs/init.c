@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/12/08 11:06:54 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/08 13:20:08 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_start(t_data *g)
 	if (!ft_valid_chars(g->map, VALID_CHARS))
 		ft_error(ERR_CHAR, g, EXIT_FAILURE);
 	ft_check_map(g->map, g->map_height, g);
+	ft_map_size(g);
 	g->nbr_doors = ft_count_doors(g->map);
 	g->door = ft_create_doors(g->door, g->nbr_doors, g->map);
 	g->mlx = mlx_init();

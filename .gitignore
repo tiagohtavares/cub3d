@@ -1,4 +1,5 @@
 .vscode
-cub3d*
+cub3d
+cub3d_bonus
 *.o
 *.a

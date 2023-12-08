@@ -6,7 +6,7 @@
 #    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/12/08 12:05:46 by heda-sil         ###   ########.fr        #
+#    Updated: 2023/12/08 15:51:03 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFT_DIR = ./libft
 MINILIBX = ./minilibx-linux/libmlx_Linux.a
 MINILIBX_DIR = ./minilibx-linux
 
-CC	= cc -Wall -Wextra -Werror -O3
+CC	= cc -Wall -Wextra -Werror #-O3
 RM	= rm -f
 
 includes = includes
