@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/12/08 15:23:30 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/18 22:58:48 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ typedef struct s_door
 	int	state;
 }	t_door;
 
-
 typedef struct s_data
 {
 	t_list		*map_file;
@@ -154,7 +153,6 @@ typedef struct s_data
 	t_door		*door;
 }	t_data;
 
-
 // DEBUG // TMP
 void	ft_map_print(char **map);
 void	ft_file_print(t_list *file);
@@ -195,12 +193,12 @@ int		ft_get_colors(char *line, t_data *gameinfo, int surface);
 char	**ft_validate_colors(char *line, t_data *gameinfo);
 
 // Doors
-int	ft_count_doors(char **map);
-int	ft_get_door_state(t_door *door, int x, int y, int nbr_doors);
+int		ft_count_doors(char **map);
+int		ft_get_door_state(t_door *door, int x, int y, int nbr_doors);
 void	ft_set_door_state(t_data *g, int x, int y, int value);
 t_door	*ft_create_doors(t_door *doors, int nbr_doors, char **map);
-int	check_door_horizontal(t_data *game, int x, int y);
-int	check_door_vertical(t_data *game, int x, int y);
+int		check_door_horizontal(t_data *game, int x, int y);
+int		check_door_vertical(t_data *game, int x, int y);
 
 //init.c
 void	ft_start(t_data *gameinfo);
@@ -220,14 +218,14 @@ void	open_door(t_data *g);
 
 // Mouse
 void	rotate(double olddirx, double oldplanex, double ang, t_data *g);
-int	mouse(int x, int y, t_data *g);
-int	mouse_pos(t_data *g);
+int		mouse(int x, int y, t_data *g);
+int		mouse_pos(t_data *g);
 
 //player_position.c
 void	ft_get_player_position(t_data *gameinfo);
 
 //raycast.c
-int	ft_raycast(t_data *gameinfo);
+int		ft_raycast(t_data *gameinfo);
 void	ft_direction(t_data *g);
 void	ft_height(t_data *g, int *start, int *end);
 void	ft_hit(t_data *g);
