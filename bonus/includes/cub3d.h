@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/12/19 05:48:02 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:13:23 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,5 +241,6 @@ void	ft_crosshair(t_data *game);
 void	ft_draw_square(t_data *game, int x, int y, int color);
 void	ft_draw_minimap(t_data *game);
 void	ft_draw(t_data *g, char square, int x, int y);
+void	ft_draw_player(t_data *game, int x, int y, int color);
 
 #endif

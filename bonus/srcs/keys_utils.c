@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:33:53 by ttavares          #+#    #+#             */
-/*   Updated: 2023/12/08 11:57:41 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:20:05 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ int	x_button(t_data *g)
 	return (0);
 }
 
-/* TODO: Think if we add a way to close the door automatically AND a way to
-open the door slower instead of pressing the button and the door
-just disappears */
 void	open_door(t_data *g)
 {
 	int	i;

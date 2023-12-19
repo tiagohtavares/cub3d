@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:32:57 by ttavares          #+#    #+#             */
-/*   Updated: 2023/12/19 02:03:19 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:18:43 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	move_w(t_data *g)
 		g->playerx += g->inidirx * PLAYER_SPEED;
 		g->playery += g->inidiry * PLAYER_SPEED;
 	}
-	x = (int)(g->playerx - 2 * (g->inidirx * PLAYER_ZOOM));
-	y = (int)(g->playery - 2 * (g->inidiry * PLAYER_ZOOM));
+	x = (int)(g->playerx - (g->inidirx * 2.5 * PLAYER_ZOOM));
+	y = (int)(g->playery - (g->inidiry * 2.5 * PLAYER_ZOOM));
 	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
 		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
@@ -48,8 +48,8 @@ void	move_s(t_data *g)
 		g->playerx -= g->inidirx * PLAYER_SPEED;
 		g->playery -= g->inidiry * PLAYER_SPEED;
 	}
-	x = (int)(g->playerx + 2 * (g->inidirx * PLAYER_ZOOM));
-	y = (int)(g->playery + 2 * (g->inidiry * PLAYER_ZOOM));
+	x = (int)(g->playerx + (g->inidirx * 2.5 * PLAYER_ZOOM));
+	y = (int)(g->playery + (g->inidiry * 2.5 * PLAYER_ZOOM));
 	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
 		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
@@ -69,8 +69,8 @@ void	move_d(t_data *g)
 		g->playery += g->inidirx * PLAYER_SPEED;
 		g->playerx -= g->inidiry * PLAYER_SPEED;
 	}
-	x = (int)(g->playerx + 2 * (g->inidiry * PLAYER_ZOOM));
-	y = (int)(g->playery - 2 * (g->inidirx * PLAYER_ZOOM));
+	x = (int)(g->playerx + (g->inidiry * 2.5 * PLAYER_ZOOM));
+	y = (int)(g->playery - (g->inidirx * 2.5 * PLAYER_ZOOM));
 	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
 		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
@@ -90,8 +90,8 @@ void	move_a(t_data *g)
 		g->playery -= g->inidirx * PLAYER_SPEED;
 		g->playerx += g->inidiry * PLAYER_SPEED;
 	}
-	x = (int)(g->playerx - 2 * (g->inidiry * PLAYER_ZOOM));
-	y = (int)(g->playery + 2 * (g->inidirx * PLAYER_ZOOM));
+	x = (int)(g->playerx - (g->inidiry * 2.5 * PLAYER_ZOOM));
+	y = (int)(g->playery + (g->inidirx * 2.5 * PLAYER_ZOOM));
 	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
 		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))

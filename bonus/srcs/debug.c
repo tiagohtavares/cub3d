@@ -6,15 +6,13 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:01:06 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/12/19 03:28:10 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:09:51 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 // TMP: move to header file
-void	ft_draw_player(t_data *game, int x, int y);
-void	ft_draw_indicator(t_data *game, int x, int y);
 
 //Prints the map
 void	ft_map_print(char **map)
@@ -51,7 +49,7 @@ void	ft_textures_print(t_texture texture)
 	ft_printf("----------END----------\n\n");
 }
 
-// TODO: change the values to draw the orientation
+/* // TODO: change the values to draw the orientation
 void	ft_draw_player(t_data *game, int x, int y)
 {
 	int	i;
@@ -73,7 +71,7 @@ void	ft_draw_player(t_data *game, int x, int y)
 //	else if (game->side != 1 && game->raydirx >= 0)
 //		printf("EAST\n");
 //	ft_draw_indicator(game, x, y);
-}
+} */
 
 /*
 // TODO: Refactor to remove hardcoded values; FIX: logic to draw all cases, find a way to draw diagonalls

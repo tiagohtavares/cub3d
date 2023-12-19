@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/12/08 13:20:08 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:21:16 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_start(t_data *g)
 
 void	ft_init(t_data *g)
 {
-	int i;
+	int	i;
 
 	g->map = NULL;
 	g->map_file = NULL;

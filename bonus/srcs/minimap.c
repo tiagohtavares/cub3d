@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 03:28:22 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/12/19 03:29:20 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:19:42 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	ft_draw_minimap(t_data *g)
 				ft_draw_square(g, x, y, C_RED);
 		}
 	}
-	ft_draw_square(g, (g->playerx * MAP_WIDTH), \
-	(g->playery * MAP_HEIGHT), C_BLUE);
+	ft_draw_player(g, (int)(g->playerx * MAP_WIDTH) + 4, \
+	(int)(g->playery * MAP_HEIGHT) + 4, C_BLUE);
 }
 
 void	ft_draw(t_data *g, char square, int x, int y)
@@ -85,4 +85,27 @@ void	ft_draw(t_data *g, char square, int x, int y)
 		ft_draw_square(g, x, y, C_BLACK);
 	else if (ft_strchr(PLAYER, square))
 		ft_draw_square(g, x, y, C_WHITE);
+}
+
+// Draws a player as a dot
+void	ft_draw_player(t_data *game, int x, int y, int color)
+{
+	int	i;
+	int	j;
+	int	radius;
+
+	if (MAP_HEIGHT > MAP_WIDTH)
+		radius = MAP_HEIGHT / 4;
+	else
+		radius = MAP_WIDTH / 4;
+	i = -radius - 1;
+	while (++i <= radius)
+	{
+		j = -radius - 1;
+		while (++j <= radius)
+		{
+			if ((i * i) + (j * j) <= radius * radius)
+				ft_set_pixel(game, x + i, y + j, color);
+		}
+	}
 }

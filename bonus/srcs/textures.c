@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:39:15 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/29 11:53:55 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:56:39 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	ft_set_pixel(t_data *g, int x, int y, int color)
 {
 	int	index;
 
+	if (x < 0 || y < 0 || x > W_WIDTH || y > W_HEIGHT)
+		return ;
 	index = (y * g->line_length) + (x * (g->bpp / 8));
 	*(int *)(g->main_addr + index) = color;
 }
