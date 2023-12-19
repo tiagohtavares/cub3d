@@ -29,6 +29,8 @@ void	move_w(t_data *g)
 	}
 	x = (int)(g->playerx - 4 * (g->inidirx * PLAYER_ZOOM));
 	y = (int)(g->playery - 4 * (g->inidiry * PLAYER_ZOOM));
+	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
+		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
 		ft_set_door_state(g, x, y, 1);
 }
@@ -48,6 +50,8 @@ void	move_s(t_data *g)
 	}
 	x = (int)(g->playerx + 4 * (g->inidirx * PLAYER_ZOOM));
 	y = (int)(g->playery + 4 * (g->inidiry * PLAYER_ZOOM));
+	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
+		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
 		ft_set_door_state(g, x, y, 1);
 }
@@ -67,6 +71,8 @@ void	move_d(t_data *g)
 	}
 	x = (int)(g->playerx + 4 * (g->inidiry * PLAYER_ZOOM));
 	y = (int)(g->playery - 4 * (g->inidirx * PLAYER_ZOOM));
+	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
+		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
 		ft_set_door_state(g, x, y, 1);
 }
@@ -86,6 +92,8 @@ void	move_a(t_data *g)
 	}
 	x = (int)(g->playerx - 4 * (g->inidiry * PLAYER_ZOOM));
 	y = (int)(g->playery + 4 * (g->inidirx * PLAYER_ZOOM));
+	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
+		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
 		ft_set_door_state(g, x, y, 1);
 }

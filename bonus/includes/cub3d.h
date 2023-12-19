@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/12/18 22:58:48 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/19 03:34:49 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,9 +157,7 @@ typedef struct s_data
 void	ft_map_print(char **map);
 void	ft_file_print(t_list *file);
 void	ft_textures_print(t_texture texture);
-void	ft_draw_minimap(t_data *game);
-void	ft_draw_square(t_data *game, int x, int y, int color);
-void	ft_crosshair(t_data *game);
+
 
 // Map Check Utils
 void	ft_check_file_ext(char *file, t_data *gameinfo);
@@ -238,5 +236,11 @@ void	ft_set_pixel(t_data *gameinfo, int x, int y, int color);
 void	ft_texture_side(t_data *g);
 void	ft_texposition(t_data *g, int start, int end, int x);
 void	ft_texture_put(t_data *g, int start, int end, int x);
+
+//minimap.c
+void	ft_crosshair(t_data *game);
+void	ft_draw_square(t_data *game, int x, int y, int color);
+void	ft_draw_minimap(t_data *game);
+void	ft_draw(t_data *g, char square, int x, int y);
 
 #endif

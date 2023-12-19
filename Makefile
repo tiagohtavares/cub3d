@@ -6,7 +6,7 @@
 #    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/12/08 15:51:03 by heda-sil         ###   ########.fr        #
+#    Updated: 2023/12/19 03:29:51 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ SRCS_B = ./bonus/srcs/main ./bonus/srcs/read_map ./bonus/srcs/init \
 	./bonus/srcs/textures ./bonus/srcs/textures_utils ./bonus/srcs/texture_check \
 	./bonus/srcs/texture_check_utils ./bonus/srcs/map_check \
 	./bonus/srcs/map_check_utils ./bonus/srcs/mouse ./bonus/srcs/doors \
-	./bonus/srcs/doors_utils\
+	./bonus/srcs/doors_utils ./bonus/srcs/minimap \
 	./bonus/srcs/debug \
 	./get_next_line/get_next_line ./get_next_line/get_next_line_utils
 
