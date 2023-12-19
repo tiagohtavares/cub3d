@@ -73,8 +73,8 @@ void	ft_draw_minimap(t_data *g)
 				ft_draw_square(g, x, y, C_RED);
 		}
 	}
-	ft_draw_square(g, (g->playerx * MAP_WIDTH) - 4, \
-	(g->playery * MAP_HEIGHT) - 4, C_BLUE);
+	ft_draw_square(g, (g->playerx * MAP_WIDTH), \
+	(g->playery * MAP_HEIGHT), C_BLUE);
 }
 
 void	ft_draw(t_data *g, char square, int x, int y)

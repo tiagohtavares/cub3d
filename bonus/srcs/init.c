@@ -36,6 +36,8 @@ void	ft_start(t_data *g)
 
 void	ft_init(t_data *g)
 {
+	int i;
+
 	g->map = NULL;
 	g->map_file = NULL;
 	g->mlx = NULL;
@@ -47,11 +49,9 @@ void	ft_init(t_data *g)
 	g->img_e = NULL;
 	g->img_w = NULL;
 	g->image = ft_calloc(TEXT_NBR - 2, sizeof(*g->image));
-	g->image[0].image = NULL;
-	g->image[1].image = NULL;
-	g->image[2].image = NULL;
-	g->image[3].image = NULL;
-	g->image[4].image = NULL;
+	i = -1;
+	while (++i < TEXT_NBR - 2)
+		g->image[i].image = NULL;
 	g->map_width = 0;
 	g->map_height = 0;
 	g->ceilingcolor = -1;

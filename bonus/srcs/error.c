@@ -41,6 +41,8 @@ void	ft_clean_walls(t_data *prog)
 	i = 0;
 	while (i < TEXT_NBR - 2)
 	{
+		if (!prog->image)
+			break ;
 		if (prog->image[i].image)
 			mlx_destroy_image(prog->mlx, prog->image[i].image);
 		free(prog->image[i].texture);

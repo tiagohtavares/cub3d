@@ -27,8 +27,8 @@ void	move_w(t_data *g)
 		g->playerx += g->inidirx * PLAYER_SPEED;
 		g->playery += g->inidiry * PLAYER_SPEED;
 	}
-	x = (int)(g->playerx - 4 * (g->inidirx * PLAYER_ZOOM));
-	y = (int)(g->playery - 4 * (g->inidiry * PLAYER_ZOOM));
+	x = (int)(g->playerx - 2 * (g->inidirx * PLAYER_ZOOM));
+	y = (int)(g->playery - 2 * (g->inidiry * PLAYER_ZOOM));
 	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
 		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
@@ -48,8 +48,8 @@ void	move_s(t_data *g)
 		g->playerx -= g->inidirx * PLAYER_SPEED;
 		g->playery -= g->inidiry * PLAYER_SPEED;
 	}
-	x = (int)(g->playerx + 4 * (g->inidirx * PLAYER_ZOOM));
-	y = (int)(g->playery + 4 * (g->inidiry * PLAYER_ZOOM));
+	x = (int)(g->playerx + 2 * (g->inidirx * PLAYER_ZOOM));
+	y = (int)(g->playery + 2 * (g->inidiry * PLAYER_ZOOM));
 	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
 		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
@@ -69,8 +69,8 @@ void	move_d(t_data *g)
 		g->playery += g->inidirx * PLAYER_SPEED;
 		g->playerx -= g->inidiry * PLAYER_SPEED;
 	}
-	x = (int)(g->playerx + 4 * (g->inidiry * PLAYER_ZOOM));
-	y = (int)(g->playery - 4 * (g->inidirx * PLAYER_ZOOM));
+	x = (int)(g->playerx + 2 * (g->inidiry * PLAYER_ZOOM));
+	y = (int)(g->playery - 2 * (g->inidirx * PLAYER_ZOOM));
 	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
 		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
@@ -90,8 +90,8 @@ void	move_a(t_data *g)
 		g->playery -= g->inidirx * PLAYER_SPEED;
 		g->playerx += g->inidiry * PLAYER_SPEED;
 	}
-	x = (int)(g->playerx - 4 * (g->inidiry * PLAYER_ZOOM));
-	y = (int)(g->playery + 4 * (g->inidirx * PLAYER_ZOOM));
+	x = (int)(g->playerx - 2 * (g->inidiry * PLAYER_ZOOM));
+	y = (int)(g->playery + 2 * (g->inidirx * PLAYER_ZOOM));
 	if (x < 0 || y < 0 || x >= g->map_width || y >= g->map_height)
 		return ;
 	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))

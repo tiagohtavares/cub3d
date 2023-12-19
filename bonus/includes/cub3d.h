@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/12/19 03:34:49 by heda-sil         ###   ########.fr       */
+/*   Updated: 2023/12/19 05:48:02 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 
 # define TEXT_NBR 7
 # define PLAYER_SPEED 0.1
-# define PLAYER_ZOOM 0.5
+# define PLAYER_ZOOM 0.75
 
 enum e_walls
 {
@@ -157,7 +157,6 @@ typedef struct s_data
 void	ft_map_print(char **map);
 void	ft_file_print(t_list *file);
 void	ft_textures_print(t_texture texture);
-
 
 // Map Check Utils
 void	ft_check_file_ext(char *file, t_data *gameinfo);
