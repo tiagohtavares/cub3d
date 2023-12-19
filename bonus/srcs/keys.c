@@ -13,7 +13,6 @@
 #include "../includes/cub3d.h"
 #include "../includes/errors.h"
 #include <math.h>
-#include <stdio.h>
 
 void	move_w(t_data *g)
 {
@@ -21,15 +20,17 @@ void	move_w(t_data *g)
 	int	y;
 
 	x = (int)(g->playerx + g->inidirx * PLAYER_ZOOM);
-	y = (int)(g->playery);
-	if (g->map[y][x] != '1' && (g->map[y][x] != 'D' || \
-	ft_get_door_state(g->door, x, y, g->nbr_doors) != 1))
-		g->playerx += g->inidirx * PLAYER_SPEED;
-	x = (int)(g->playerx);
 	y = (int)(g->playery + g->inidiry * PLAYER_ZOOM);
 	if (g->map[y][x] != '1' && (g->map[y][x] != 'D' || \
 	ft_get_door_state(g->door, x, y, g->nbr_doors) != 1))
+	{
+		g->playerx += g->inidirx * PLAYER_SPEED;
 		g->playery += g->inidiry * PLAYER_SPEED;
+	}
+	x = (int)(g->playerx - (g->inidirx * PLAYER_ZOOM));
+	y = (int)(g->playery - (g->inidiry * PLAYER_ZOOM));
+	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
+		ft_set_door_state(g, x, y, 1);
 }
 
 void	move_s(t_data *g)
@@ -38,15 +39,17 @@ void	move_s(t_data *g)
 	int	y;
 
 	x = (int)(g->playerx - g->inidirx * PLAYER_ZOOM);
-	y = (int)(g->playery);
-	if (g->map[y][x] != '1' && (g->map[y][x] != 'D' || \
-	ft_get_door_state(g->door, x, y, g->nbr_doors) != 1))
-		g->playerx -= g->inidirx * PLAYER_SPEED;
-	x = (int)(g->playerx);
 	y = (int)(g->playery - g->inidiry * PLAYER_ZOOM);
 	if (g->map[y][x] != '1' && (g->map[y][x] != 'D' || \
 	ft_get_door_state(g->door, x, y, g->nbr_doors) != 1))
+	{
+		g->playerx -= g->inidirx * PLAYER_SPEED;
 		g->playery -= g->inidiry * PLAYER_SPEED;
+	}
+	x = (int)(g->playerx + (g->inidirx * PLAYER_ZOOM));
+	y = (int)(g->playery + (g->inidiry * PLAYER_ZOOM));
+	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
+		ft_set_door_state(g, x, y, 1);
 }
 
 void	move_d(t_data *g)
@@ -54,16 +57,18 @@ void	move_d(t_data *g)
 	int	x;
 	int	y;
 
-	x = (int)(g->playerx);
+	x = (int)(g->playerx - g->inidiry * PLAYER_ZOOM);
 	y = (int)(g->playery + g->inidirx * PLAYER_ZOOM);
 	if (g->map[y][x] != '1' && (g->map[y][x] != 'D' || \
 	ft_get_door_state(g->door, x, y, g->nbr_doors) != 1))
+	{
 		g->playery += g->inidirx * PLAYER_SPEED;
-	x = (int)(g->playerx - g->inidiry * PLAYER_ZOOM);
-	y = (int)(g->playery);
-	if (g->map[y][x] != '1' && (g->map[y][x] != 'D' || \
-	ft_get_door_state(g->door, x, y, g->nbr_doors) != 1))
 		g->playerx -= g->inidiry * PLAYER_SPEED;
+	}
+	x = (int)(g->playerx + (g->inidiry * PLAYER_ZOOM));
+	y = (int)(g->playery - (g->inidirx * PLAYER_ZOOM));
+	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
+		ft_set_door_state(g, x, y, 1);
 }
 
 void	move_a(t_data *g)
@@ -71,16 +76,18 @@ void	move_a(t_data *g)
 	int	x;
 	int	y;
 
-	x = (int)(g->playerx);
+	x = (int)(g->playerx + g->inidiry * PLAYER_ZOOM);
 	y = (int)(g->playery - g->inidirx * PLAYER_ZOOM);
 	if (g->map[y][x] != '1' && (g->map[y][x] != 'D' || \
 	ft_get_door_state(g->door, x, y, g->nbr_doors) != 1))
+	{
 		g->playery -= g->inidirx * PLAYER_SPEED;
-	x = (int)(g->playerx + g->inidiry * PLAYER_ZOOM);
-	y = (int)(g->playery);
-	if (g->map[y][x] != '1' && (g->map[y][x] != 'D' || \
-	ft_get_door_state(g->door, x, y, g->nbr_doors) != 1))
 		g->playerx += g->inidiry * PLAYER_SPEED;
+	}
+	x = (int)(g->playerx - (g->inidiry * PLAYER_ZOOM));
+	y = (int)(g->playery + (g->inidirx * PLAYER_ZOOM));
+	if (g->map[y][x] == 'D' && !ft_get_door_state(g->door, x, y, g->nbr_doors))
+		ft_set_door_state(g, x, y, 1);
 }
 
 int	keys(int key, t_data *g)
