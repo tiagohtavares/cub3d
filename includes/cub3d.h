@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2024/01/18 16:13:50 by heda-sil         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:10:23 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ typedef struct s_data
 	double		perpwalldistance;
 	double		lineh;
 	double		wallx;
-	t_image		image[4];
+	t_image		*image;
 }	t_data;
 
 // Map Check Utils

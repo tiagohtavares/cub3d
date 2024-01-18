@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:45 by heda-sil          #+#    #+#             */
-/*   Updated: 2023/11/24 17:27:50 by heda-sil         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:11:34 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,19 @@ void	ft_clean_walls(t_data *prog)
 	int	i;
 
 	i = 0;
-	while (i < 4)
-	{
+	while (i < 4) {
+		if (!prog->image)
+			break;
 		if (prog->image[i].image)
 			mlx_destroy_image(prog->mlx, prog->image[i].image);
 		free(prog->image[i].texture);
 		i++;
 	}
-	if (prog->textures.wall)
-	{
+	if (prog->textures.wall) {
 		ft_free_wall(&prog->textures);
+	}
+	if (prog->image) {
+		free(prog->image);
 	}
 }
 

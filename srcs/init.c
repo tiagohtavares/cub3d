@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:07:10 by ttavares          #+#    #+#             */
-/*   Updated: 2023/11/24 17:27:56 by heda-sil         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:10:54 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	ft_start(t_data *g)
 
 void	ft_init(t_data *g)
 {
+	int i;
+
 	g->map = NULL;
 	g->map_file = NULL;
 	g->mlx = NULL;
@@ -42,14 +44,10 @@ void	ft_init(t_data *g)
 	g->img_s = NULL;
 	g->img_e = NULL;
 	g->img_w = NULL;
-	g->image[0].texture = NULL;
-	g->image[1].texture = NULL;
-	g->image[2].texture = NULL;
-	g->image[3].texture = NULL;
-	g->image[0].image = NULL;
-	g->image[1].image = NULL;
-	g->image[2].image = NULL;
-	g->image[3].image = NULL;
+	g->image = ft_calloc(4, sizeof(*g->image));
+	i = -1;
+	while (++i < 4)
+		g->image[i].image = NULL;
 	g->map_width = 0;
 	g->map_height = 0;
 	g->ceilingcolor = -1;
