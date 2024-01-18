@@ -6,7 +6,7 @@
 /*   By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:26:01 by ttavares          #+#    #+#             */
-/*   Updated: 2023/12/19 14:13:23 by heda-sil         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:13:44 by heda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,11 +152,6 @@ typedef struct s_data
 	int			nbr_doors;
 	t_door		*door;
 }	t_data;
-
-// DEBUG // TMP
-void	ft_map_print(char **map);
-void	ft_file_print(t_list *file);
-void	ft_textures_print(t_texture texture);
 
 // Map Check Utils
 void	ft_check_file_ext(char *file, t_data *gameinfo);

@@ -6,7 +6,7 @@
 #    By: heda-sil <heda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:09:11 by ttavares          #+#    #+#              #
-#    Updated: 2023/12/19 03:29:51 by heda-sil         ###   ########.fr        #
+#    Updated: 2024/01/18 16:14:26 by heda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ SRCS =	./srcs/main ./srcs/read_map ./srcs/init ./srcs/player_position \
 	./srcs/raycast_utils ./srcs/textures ./srcs/textures_utils \
 	./srcs/texture_check ./srcs/texture_check_utils ./srcs/map_check \
 	./srcs/map_check_utils \
-	./srcs/debug \
 	./get_next_line/get_next_line ./get_next_line/get_next_line_utils
 
 SRCS_B = ./bonus/srcs/main ./bonus/srcs/read_map ./bonus/srcs/init \
@@ -50,7 +49,6 @@ SRCS_B = ./bonus/srcs/main ./bonus/srcs/read_map ./bonus/srcs/init \
 	./bonus/srcs/texture_check_utils ./bonus/srcs/map_check \
 	./bonus/srcs/map_check_utils ./bonus/srcs/mouse ./bonus/srcs/doors \
 	./bonus/srcs/doors_utils ./bonus/srcs/minimap \
-	./bonus/srcs/debug \
 	./get_next_line/get_next_line ./get_next_line/get_next_line_utils
 
 OBJS = $(SRCS:=.o)
